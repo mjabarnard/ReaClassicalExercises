@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base target="_self">
+    <title>ReaClassical Exercise 1: Project Setup & Recording</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .page-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1A202C 0%, #4A5568 100%);
+            color: white;
+            padding: 30px 30px 70px 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            page-break-inside: avoid;
+            page-break-after: avoid;
+            position: relative;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.2em;
+            line-height: 1.2;
+            color: white;
+            page-break-after: avoid;
+        }
+        
+        .tagline {
+            font-size: 1em;
+            opacity: 0.9;
+            margin-top: 10px;
+            color: white;
+        }
+        
+        /* Back to Series Button Styles */
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 5px;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.7);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .back-btn:focus {
+            outline: 3px solid #3498db;
+            outline-offset: 2px;
+        }
+        
+        .back-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        /* Back button in header */
+        .header-back-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+        }
+        
+        /* Footer back button */
+        .footer-nav {
+            background: white;
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .footer-back-btn {
+            background-color: #3498db;
+            color: white;
+            border: 2px solid #3498db;
+        }
+        
+        .footer-back-btn:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        /* Section Styles */
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            page-break-inside: avoid;
+        }
+        
+        .section.new-page {
+            page-break-before: always;
+        }
+        
+        h2 {
+            color: #2980b9;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+            page-break-after: avoid;
+            page-break-inside: avoid;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin-top: 25px;
+            page-break-after: avoid;
+        }
+        
+        /* List Styles */
+        ol {
+            padding-left: 25px;
+            list-style-type: decimal !important;
+            page-break-inside: auto;
+        }
+        
+        ol > li {
+            margin-bottom: 10px;
+            list-style-type: decimal !important;
+            page-break-inside: avoid;
+            page-break-after: auto;
+        }
+        
+        /* Keep short lists together */
+        li > ul, li > ol {
+            page-break-before: avoid;
+        }
+        
+        ol ol {
+            list-style-type: lower-alpha !important;
+            padding-left: 20px;
+        }
+        
+        ol ol > li {
+            list-style-type: lower-alpha !important;
+        }
+        
+        ol ul {
+            list-style-type: lower-alpha !important;
+            padding-left: 20px;
+        }
+        
+        ol ul > li {
+            list-style-type: lower-alpha !important;
+        }
+        
+        ol ul ul, ol ol ul {
+            list-style-type: disc !important;
+            padding-left: 20px;
+            font-style: italic !important;
+        }
+        
+        ol ul ul > li, ol ol ul > li {
+            list-style-type: disc !important;
+            font-style: italic !important;
+        }
+        
+        ol ol, ol ul {
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            list-style-type: disc !important;
+        }
+        
+        ul li {
+            list-style-type: inherit;
+        }
+        
+        /* Special Elements */
+        .kbd {
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+            color: #333;
+            display: inline-block;
+            font-family: Monaco, Consolas, monospace;
+            font-size: 0.9em;
+            padding: 2px 5px;
+            margin: 0 2px;
+            white-space: nowrap;
+        }
+        
+        /* Boxes - prevent page breaks */
+        .tips, .challenge, .concept-box, .mac-note, .pro-tip {
+            page-break-inside: avoid;
+            page-break-after: auto;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .tips {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            border: 1px solid #e3e8ec;
+        }
+        
+        .tips ul {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .challenge {
+            background-color: #f0f7fb;
+            border-left: 4px solid #2ecc71;
+            border: 1px solid #d5ebf5;
+        }
+        
+        .concept-box {
+            background-color: #e8f4fc;
+            border: 1px solid #b3d7ed;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .mac-note {
+            background-color: #fcf8e3;
+            border-left: 4px solid #f0ad4e;
+            padding: 10px 15px;
+            font-style: italic;
+            border: 1px solid #f3e7ca;
+        }
+        
+        .pro-tip {
+            background-color: #e8f6e8;
+            border-left: 4px solid #28a745;
+            padding: 10px 15px;
+            font-style: italic;
+            border: 1px solid #d4edda;
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+            page-break-inside: avoid;
+        }
+        
+        .toc h2 {
+            color: #2980b9;
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        .toc ul {
+            list-style-type: none;
+            padding-left: 20px;
+            margin-left: 0;
+        }
+        
+        .toc ul li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .toc ul li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #2980b9;
+            font-weight: bold;
+        }
+        
+        .toc ul li a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .toc ul li a:hover {
+            color: #2980b9;
+            padding-left: 5px;
+            text-decoration: underline;
+        }
+        
+        .toc-link {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+            display: inline-block;
+            cursor: pointer;
+            border-bottom: 1px dotted transparent;
+        }
+
+        .toc-link:hover {
+            color: #2980b9;
+            padding-left: 5px;
+            text-decoration: underline;
+            border-bottom-color: #2980b9;
+        }
+        
+        /* Smooth scrolling for modern browsers */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-back-btn {
+                position: static;
+                margin-top: 20px;
+                margin-bottom: 0;
+            }
+        }
+        
+        /* Print-specific styles */
+        @media print {
+            body {
+                font-size: 11pt;
+                line-height: 1.5;
+            }
+            
+            .page-container {
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            header {
+                background: #2C3E50 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                page-break-after: avoid;
+            }
+            
+            .back-btn, .footer-nav {
+                display: none;
+            }
+            
+            .section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: auto;
+            }
+            
+            /* Major sections start on new page */
+            .part-section {
+                page-break-before: always;
+            }
+            
+            /* Keep important elements together */
+            h1, h2, h3, h4 {
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
+            
+            p {
+                orphans: 3;
+                widows: 3;
+            }
+            
+            .concept-box, .tips, .mac-note, .pro-tip, .challenge {
+                page-break-inside: avoid;
+            }
+            
+            /* Ensure list items don't break awkwardly */
+            li {
+                page-break-inside: avoid;
+            }
+            
+            /* Keep nested lists with their parent */
+            li > ul, li > ol {
+                page-break-before: avoid;
+            }
+            
+            /* TOC links appearance in print */
+            .toc ul li a {
+                color: black;
+                text-decoration: none;
+            }
+        }
+        
+        /* Ensure readability */
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+            orphans: 3;
+            widows: 3;
+        }
+        
+        strong {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="page-container">
+    <header>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; width: 100%;">
+            <div style="margin-right: auto; padding-bottom: 15px;">
+                <img src="https://wrdtp.ac.uk/wp-content/uploads/2018/01/york.png" alt="University of York logo" style="height: 75px; width: auto;">
+            </div>
+            <div style="flex-grow: 1; min-width: 250px; text-align: right;">
+                <h1>ReaClassical Exercise 1: <br>Project Setup & Recording</h1>
+                <div class="tagline">v1.0 by Matt Barnard Feb 25 for ReaClassical 25</div>
+            </div>
+        </div>
+        <a href="index.html" class="back-btn header-back-btn" aria-label="Back to ReaClassical Exercise Series">
+            ← Back to Series
+        </a>
+    </header>
+
+    <!-- Introduction -->
+    <div class="section">
+        <h2>Introduction</h2>
+        <p>This exercise introduces you to setting up a ReaClassical project with vertical workflow, configuring input routing, track naming, and the take recording system. It's is designed to be completed in the Lyons Studio using the installed Decca tree in SJLCH for audio input (we don't need to adjust the tree for this exercise), but feel free to use different mic inputs if available.</p>
+
+        <div class="mac-note">
+            <strong>Mac Function Key Note:</strong> On the studio Mac, you'll need to press <span class="kbd" aria-label="function key">fn</span> + the function key (e.g., <span class="kbd">fn+F8</span>) unless the keyboard settings have been changed to use function keys without the fn modifier.
+        </div>
+
+        <div class="concept-box">
+            <strong>Understanding Vertical Workflow:</strong> The vertical workflow arranges takes in vertical folders - source folders for recording takes and a destination folder for your final edit. This arrangement makes it easy to compare different performances and compile parts of each take into a final version without excessive horizontal scrolling. This approach is common in classical music production and has been implemented in ReaClassical for REAPER.
+        </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="toc">
+        <h2>Contents</h2>
+        <ul>
+            <li><span class="toc-link" onclick="document.getElementById('part1').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Part 1: Project Setup with Vertical Workflow</span></li>
+            <li><span class="toc-link" onclick="document.getElementById('part2').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Part 2: Recording and Take Management</span></li>
+            <li><span class="toc-link" onclick="document.getElementById('part3').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Part 3: Exploring ReaClassical's Additional Features</span></li>
+            <li><span class="toc-link" onclick="document.getElementById('closing').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Closing Remarks</span></li>
+        </ul>
+    </div>
+
+    <!-- Part 1 -->
+    <div id="part1" class="section part-section">
+        <h2>Part 1: Project Setup with Vertical Workflow</h2>
+
+        <div class="concept-box">
+            <strong>Project Structure:</strong> When setting up a project in ReaClassical, you're creating a structure designed for classical music recording and editing. The destination folder (top folder) will eventually contain your final edited version. The source folders below it will contain your individual takes, providing the raw material for your edits. All tracks are linked to a set of mixer tracks that control their settings globally. <strong>Always make changes to the mixer tracks or destination folder first, then sync with fn+F8 to propagate these changes to all source folders.</strong>
+        </div>
+
+        <ol>
+            <li><strong>Start ReaClassical and create a vertical workflow:</strong>
+                <ol>
+                    <li>Start ReaClassical and immediately save your project (<span class="kbd">Command+S</span>) with a descriptive name like "DeccaTree_Session1"</li>
+                    <li>Press <span class="kbd">fn+F8</span> to set up a vertical workflow
+                        <ul>
+                            <li>When prompted, enter "3" for the number of tracks - this will create three microphone channels in each folder</li>
+                        </ul>
+                    </li>
+                    <li>Name the tracks "Left", "Centre", and "Right" for the Decca Tree (this naming convention helps with organisation)</li>
+                    <li>Select "Yes" to auto-set recording inputs based on track names
+                        <ul>
+                            <li>Check it assigns inputs 1-3 for the three tracks when prompted (these correspond to the physical Decca Tree microphones)</li>
+                        </ul>
+                    </li>
+                    <li>When asked about special tracks, select "Yes", find "Submix", enter "1" for the number. We'll name it and set it up later - we only need to do this for the Decca to collect the 3 inputs into a stereo buss</li>
+                    <li>Take a moment to look at how ReaClassical has structured your project</li>
+                </ol>
+            </li>
+            <li><strong>Examine your project structure in detail:</strong>
+                <ol>
+                    <li>Notice the destination folder at the top - this is where your final edited version will eventually be built</li>
+                    <li>Below are six source folders, all with the same track structure - these will hold your individual takes</li>
+                    <li>Each folder contains the same channels (Left, Centre, Right) - this mirroring is key to the vertical workflow
+                        <ul>
+                            <li>Additional source folders will be automatically created as needed when recording multiple takes</li>
+                        </ul>
+                    </li>
+                    <li>Look at the mixer panel to see the mixer tracks (prefixed with "M:") which control all folder tracks
+                        <ul> 
+                            <li>The # track appears in the mixer - this is your submix that will combine all Decca Tree elements</li>
+                        </ul>
+                    </li>
+                    <li>Try clicking on different folders to see how navigation works in the vertical arrangement</li>
+                </ol>
+            </li>
+            <li><strong>Verify and understand input routing:</strong>
+                <ol>
+                    <li>Right-click on the meters of each track in the destination folder to open the input selection menu
+                        <ul>
+                            <li>Inspect the input designation - you should see each track properly assigned to inputs 1-3</li>
+                            <li>Notice how all three tracks are correctly routed to inputs 1-3 without manual configuration</li>
+                            <li>This happens automatically due to track naming and the auto-routing feature</li>
+                        </ul>
+                    </li>
+                    <li>If you need to adjust any inputs, you can use the routing matrix as detailed in the next section</li>
+                    <li><strong>Important:</strong> Always sync <span class="kbd">fn+F8</span> after changing routing to ensure consistent settings across all folders</li>
+                </ol>
+            </li>
+            <li><strong>Exploring the routing matrix for input control:</strong>
+                <ol>
+                    <li>Press <span class="kbd">Option+R</span> to open the routing matrix
+                        <ul>
+                            <li>Notice how you can see all tracks and their connections in a single view</li>
+                        </ul>
+                    </li>
+                    <li>The routing matrix provides an alternative method for selecting and managing microphone inputs
+                        <ul> 
+                            <li>This is particularly useful when you need to access inputs from the Dante preamps or other input sources</li>
+                        </ul>
+                    </li>
+                    <li>Notice the 'Source' and 'Destination' rows and columns, you can see and modify microphone input assignments by clicking on different channels
+                        <ul>
+                            <li>You can create mono inputs or stereo pairs</li>
+                        </ul>
+                    </li>
+                    <li>Make any needed input changes in the destination group or mixer tracks</li>
+                    <li>After making changes, press <span class="kbd">fn+F8</span> to propagate these changes to all source folders</li>
+                    <li><strong>Important:</strong> Always sync <span class="kbd">fn+F8</span> after changing routing to ensure consistent settings across all folders</li>
+                    <li>Close the routing matrix window when finished by clicking the X or pressing Escape</li>
+                </ol>
+            </li>
+            <li><strong>Add a new track and understand track management:</strong>
+                <ol>
+                    <li>Press <span class="kbd">Option+T</span> to add a track to all folders simultaneously</li>
+                    <li>When prompted, enter the track name "Audience" - this could represent an audience microphone in a live recording
+                        <ul>
+                            <li>Notice how the track appears in every folder and in the mixer</li>
+                        </ul>
+                    </li>
+                    <li>Practice selecting a stereo input for this track using either the right-click approach or the Routing Matrix (using the Stereo/MC part of the input list)</li>
+                    <li>Now try adding another track called "Soloist" using the same method. Select a mono input for this</li>
+                    <li><strong>Important:</strong> Always sync <span class="kbd">fn+F8</span> after changing routing to ensure consistent settings across all folders</li>
+                    <li>Observe how both new tracks maintain the same position in every folder - maintaining consistency across your project</li>
+                </ol>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> Using the global approach to add tracks ensures consistency across your entire project, saving time and reducing the likelihood of errors that could occur when configuring tracks individually.
+                </div>
+            </li>
+            <li><strong>Rename tracks and understand mixer synchronisation:</strong>
+                <ol>
+                    <li>In the mixer panel, rename "M:Left" to "M:Decca Left" by double-clicking on the name</li>
+                    <li>Similarly rename "M:Centre" to "M:Decca Centre" and "M:Right" to "M:Decca Right"</li>
+                    <li>Also rename "M:Audience" to "M:Hall Ambient" and "M:Soloist" to "M:Solo Spot"
+                        <ul>
+                            <li>Notice how the names in the mixer panel haven't yet changed in the main project view</li>
+                        </ul>
+                    </li>
+                    <li>Press <span class="kbd">fn+F8</span> to sync these new names across all folders</li>
+                    <li>Observe how all tracks in all folders update to reflect your new naming scheme</li>
+                    <li><strong>Important:</strong> Always make changes to mixer tracks (M: prefixed) or destination folder tracks first, then sync with fn+F8 to propagate these changes</li>
+                </ol>
+            </li>
+            <li><strong>Setting up the Decca Tree Submix with routing:</strong>
+                <ol>
+                    <li>Look at the "#" submix track that was created during setup - this will become your main Decca Tree mix</li>
+                    <li>First, rename it to '#Decca Mix' by double-clicking the name. We need to modify our track names to properly route to the submix:</li>
+                    <li>In the mixer panel, rename "M:Decca Left" to "M:Decca Left-", "M:Decca Centre" to "M:Decca Centre-", and "M:Decca Right" to "M:Decca Right-"
+                        <ul>
+                            <li>The hyphen at the end of each name is crucial - it tells ReaClassical that these tracks shouldn't route directly to the master bus</li>
+                        </ul>
+                    </li>
+                    <li>Press <span class="kbd">fn+F8</span> to sync these name changes to all folders</li>
+                    <li>Now in the mixer panel, click and drag from the routing button (at the bottom of the track panel) of "M:Decca Left-" to "#Decca Mix"
+                        <ul> 
+                            <li>A routing window appears - simply click OK to accept the default routing</li>
+                            <li>Similarly route "M:Decca Centre-" and "M:Decca Right-" to "#Decca Mix"</li>
+                        </ul>
+                    </li>
+                    <li>This creates a network where all three Decca Tree microphones feed into a single submix</li>
+                    <li>Now let's configure the spatial positioning of these microphones in the stereo field:
+                        <ul>
+                            <li>In the mixer panel, select "M:Decca Left-" and adjust its pan control fully left</li>
+                            <li>Select "M:Decca Right-" and adjust its pan control fully right</li>
+                            <li>Leave "M:Decca Centre-" centred in the stereo image</li>
+                            <li>This creates a proper stereo image that matches the physical layout of the Decca Tree</li>
+                        </ul>
+                    </li>
+                    <li>Try adjusting the volume faders for each microphone to change their relative levels in the mix</li>
+                    <li>Press <span class="kbd">fn+F8</span> to sync these routing, pan, and volume settings to all folders</li>
+                    <li>Now the "#Decca Mix" track contains a properly configured mix of your three Decca Tree microphones</li>
+                    <li>When using additional input channels in future, try soloing the #Decca Mix track to hear how it sounds with your current settings</li>
+                </ol>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> Submixes give you a single fader to control grouped microphones, which is convenient for both recording and editing. In larger orchestral sessions, you might create submixes for strings, woodwinds, brass, etc., allowing for balanced section control while maintaining access to individual microphones when needed. We are creating a submix in the exercise due to the Decca tree having 3 signals - we are making a 2ch buss from those 3 feeds. You don't need to make submixes for 2ch arrays or mono feeds.
+                </div>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Part 2 -->
+    <div id="part2" class="section part-section">
+        <h2>Part 2: Recording and Take Management</h2>
+
+        <div class="concept-box">
+            <strong>Take Recording in ReaClassical:</strong> The Classical Take Recording system in ReaClassical handles record arming, group switching, and take organisation automatically. This allows you to focus on the music instead of the technical details. Each take is recorded into its own source folder, making organisation intuitive and editing straightforward later on. This approach is commonly used in classical recording sessions where multiple complete takes are standard practice.
+        </div>
+
+        <ol>
+            <li><strong>Set up for recording with the Take Counter:</strong>
+                <ol>
+                    <li>Position the edit cursor at the beginning of the timeline by pressing <span class="kbd">Home</span></li>
+                    <li>Select the Destination folder if it's not already selected</li>
+                    <li>Open the Take Counter window with <span class="kbd">Command+Return</span>
+                        <ul>
+                            <li>Notice the green number showing the next take number - this tracks your recording progress</li>
+                        </ul>
+                    </li>
+                    <li>Right-click on the Take Counter window to access additional options
+                        <ul>
+                            <li>Enter a session name like "DeccaSession" - this helps organise files and makes later identification easier</li>
+                            <li>Leave the override take number setting at 0 (automatic)</li>
+                            <li>Explore the other options in this dialog - note how you can schedule recordings or set custom take numbers</li>
+                        </ul>
+                    </li>
+                    <li>Click OK to confirm your settings</li>
+                </ol>
+            </li>
+            <li><strong>Record multiple takes with automatic folder management:</strong>
+                <ol>
+                    <li>Press <span class="kbd">fn+F9</span> once to arm the tracks for recording - notice how the track meters become active
+                        <ul>
+                            <li>Observe that only the tracks in the first source folder are armed</li>
+                            <li>The Take Counter displays the current take number in green</li>
+                        </ul>
+                    </li>
+                    <li>Press <span class="kbd">fn+F9</span> again to begin recording - the Take Counter now shows a red recording indicator
+                        <ul>
+                            <li>Record about 15-20 seconds of audio from the Decca tree in the Hall</li>
+                        </ul>
+                    </li>
+                    <li>Press <span class="kbd">fn+F9</span> to stop recording</li>
+                    <li>Notice a few things happening automatically:
+                        <ul>
+                            <li>The next source folder is automatically selected and armed - ready for the next take</li>
+                            <li>The Take Counter increments to the next take number</li>
+                            <li>All your recorded audio is properly organised in the first source folder</li>
+                        </ul>
+                    </li>
+                    <li>Record a second take using <span class="kbd">fn+F9</span> and observe the same automatic processes</li>
+                    <li>For your third take, try pressing <span class="kbd">Command+Space</span> during recording to pause</li>
+                    <li>Notice that pausing keeps the same take but creates a gap in the recording</li>
+                    <li>Press <span class="kbd">Command+Space</span> again to resume recording</li>
+                    <li>Finally press <span class="kbd">fn+F9</span> to stop recording</li>
+                </ol>
+            </li>
+            <li><strong>Additional recording techniques:</strong>
+                <ol>
+                    <li>Press <span class="kbd">fn+F9</span> to begin recording take 4</li>
+                    <li>After a few seconds of recording from the Decca tree, press <span class="kbd">Option+fn+F9</span>
+                        <ul> 
+                            <li>This increments the take number without stopping recording - useful for continuous recording sessions</li>
+                            <li>Notice how the Take Counter advances but recording continues</li>
+                        </ul>
+                    </li>
+                    <li>Record a few more seconds and press <span class="kbd">fn+F9</span> to stop
+                        <ul>
+                            <li>Notice how ReaClassical has now created multiple takes across different source folders</li>
+                            <li>If you look at the source folders, you'll see each contains the appropriate audio for each take</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> The take increment feature (<span class="kbd">Option+fn+F9</span>) is particularly useful during sessions with repeated attempts at difficult passages. It allows the recording to continue while still organising takes properly for later editing.
+                </div>
+            </li>
+            <li><strong>Auditioning recorded material:</strong>
+                <ol>
+                    <li>Navigate to take 1 by pressing <span class="kbd">Return</span> and entering "1"</li>
+                    <li>Hover your mouse over the  "Decca Centre-" track in take 1 and press <span class="kbd">A</span> to hear just that microphone</li>
+                    <li>Now hover over the "Decca Right-" track and press <span class="kbd">A</span> to hear just that microphone</li>
+                    <li>Now hover over the parent folder track  "Decca Left-" and press <span class="kbd">A</span> to hear the complete mix of that take</li>
+                    <li>Try hovering at different positions within the waveform and pressing <span class="kbd">A</span> - playback starts from that position</li>
+                    <li>Press <span class="kbd">Option+A</span> to audition at a slower playback rate</li>
+                    <li>Use <span class="kbd">Space</span> to stop playback at any time</li>
+                    <li>Navigate to take 2 using <span class="kbd">Return</span> and "2", then repeat the auditioning process
+                        <ul>
+                            <li>Compare how take 1 and take 2 sound by quickly switching between them</li>
+                            <li>Notice how auditioning automatically disables any record-armed tracks for safety</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> The auditioning system allows for quick comparison between takes and microphone positions without changing track selection or using solo/mute buttons. This helps you make informed decisions by making comparisons immediate and intuitive.
+                </div>
+            </li>
+            <li><strong>Ranking takes for editing efficiency:</strong>
+                <ol>
+                    <li>After auditioning all your takes, navigate back to take 1</li>
+                    <li>Press <span class="kbd">Command+=</span> to rank it higher - notice the colour change and "+" symbol added to the item
+                        <ul>
+                            <li>Navigate to take 2 and press <span class="kbd">Command+=</span> twice to rank it even higher (++) - see how the color intensifies</li>
+                            <li>Navigate to take 3 and press <span class="kbd">Command+-</span> to rank it lower - note the different colour indicating a lower-ranked take</li>
+                            <li>Navigate back to take 1 and press <span class="kbd">Command+0</span> to remove any ranking - returning it to the default colour</li>
+                        </ul>
+                    </li>
+                    <li>Explore the full range of rankings by applying multiple + or - rankings to different takes
+                        <ul>
+                            <li>Notice how the visual system creates an overview of take quality across your project</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> Take ranking is useful during longer recording sessions and later editing stages. The visual colour coding helps identify your best and worst takes quickly. Even if you're not editing today, ranking takes as you record them preserves your initial impressions when the performances are fresh in your mind.
+                </div>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Part 3 -->
+    <div id="part3" class="section part-section">
+        <h2>Part 3: Exploring ReaClassical's Additional Features</h2>
+
+        <div class="concept-box">
+            <strong>ReaClassical's Navigation and Workflow Features:</strong> ReaClassical includes tools for efficient navigation and project management. The ability to quickly locate takes by number, audition individual tracks or complete mixes with a single keypress, and switch between different view modes all contribute to a workflow optimised for classical music production. Understanding these additional features will help you work more efficiently with classical music recordings.
+        </div>
+
+        <ol>
+            <li><strong>Navigation and visibility controls:</strong>
+                <ol>
+                    <li>Press <span class="kbd">`</span> (backtick) to see the entire project horizontally - all your takes are visible at once</li>
+                    <li>Press <span class="kbd">Command+'</span> to see the entire project vertically - all your folders are visible</li>
+                    <li>Select any parent folder track and press <span class="kbd">E</span> to hide all child tracks (ensconce)
+                        <ul>
+                            <li>Observe how the view simplifies to show only the parent tracks - useful for getting an overview</li>
+                        </ul>
+                    </li>
+                    <li>Press <span class="kbd">D</span> to display all child tracks again - returning to detailed view
+                        <ul>
+                            <li>Try hiding children on some folders and showing them on others to create custom views</li>
+                        </ul>
+                    </li>
+                    <li>Press <span class="kbd">Return</span> and enter different take numbers to quickly jump between takes
+                        <ul>
+                            <li>Try entering take numbers with decimals (e.g., "2.5") to position the cursor partway through a take</li>
+                        </ul>
+                    </li>
+                    <li>Use <span class="kbd">Q</span> and <span class="kbd">W</span> to navigate to the previous or next item edge - useful for moving between edits</li>
+                    <li>Experiment with <span class="kbd">Command+Up Arrow</span> and <span class="kbd">Command+Down Arrow</span> to adjust waveform zoom - see how it affects visibility without changing audio volume</li>
+                </ol>
+            </li>
+            <li><strong>Working with track groups and understanding folder structures:</strong>
+                <ol>
+                    <li>Press <span class="kbd">\</span> (backslash) to duplicate a folder without items - creating a new empty source group
+                        <ul>
+                            <li>Notice how the new folder maintains the same track structure as the others</li>
+                            <li>This is useful when you need more source groups for additional takes beyond what was automatically created</li>
+                        </ul>
+                    </li>
+                    <li>Press <span class="kbd">#</span> to open the special tracks dialog
+                        <ul>  
+                            <li><strong>Mac Workaround:</strong> If the # key doesn't work on the Mac (which is a known issue), go to the main menu and select Actions → Show Action List, then search for "special tracks" and run that action by double-clicking it</li>
+                        </ul>
+                    </li>
+                    <li>Add a "RoomTone" track - useful for maintaining natural ambience between edits</li>
+                    <li>Add a "Reference" track - helpful for comparing your work to other recordings
+                        <ul>
+                            <li>Notice how these special tracks appear differently in the mixer and serve specific functions</li>
+                        </ul>
+                    </li>
+                    <li>Import a short audio file to the reference track and audition it to understand its purpose</li>
+                </ol>
+            </li>
+            <li><strong>Recording features and scheduling:</strong>
+                <ol>
+                    <li>Right-click on the Take Counter and explore the scheduling options</li>
+                    <li>Set a start time 2 minutes ahead of the current time
+                        <ul>
+                            <li>Observe how the Take Counter now displays a timer indicating when recording will begin</li>
+                            <li>This feature is useful for timed recordings or when you need to set up before a performance begins</li>
+                            <li>You can also set an end time or duration for automated recording sessions</li>
+                        </ul> 
+                    </li>
+                    <li>Cancel the scheduled recording by right-clicking the Take Counter and clearing the time fields</li>
+                    <li>Access the ReaClassical manual with <span class="kbd">H</span> for detailed information on all features</li>
+                </ol>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Closing Remarks -->
+    <div id="closing" class="section part-section">
+        <h2>Closing Remarks</h2>
+
+        <p>Now that you've completed this exercise, you've created a functional ReaClassical project that demonstrates the fundamentals of the vertical workflow, recording management, and take organisation. Consider keeping this project as a reference template for future sessions. When you begin a new recording project, you might find it useful to:</p>
+
+        <ul>
+            <li>Save this project as a template that you can quickly adapt for different recording scenarios</li>
+            <li>Refer back to this exercise when setting up more complex recording configurations</li>
+            <li>Use this project as a testing ground for experimenting with different routing setups or microphone arrangements</li>
+        </ul>
+
+        <p>Remember that becoming proficient with any recording system requires practice. The keyboard shortcuts you've learned here will become second nature with regular use, significantly increasing your efficiency during recording and editing sessions.</p>
+
+        <div class="tips">
+            <h3>Additional Tips for ReaClassical</h3>
+            <ul>
+                <li>The destination folder is always the first folder - it's where you'll build your final edit</li>
+                <li>Source folders (below the destination) store your individual takes and are automatically added as needed during recording</li>
+                <li>Always make changes to mixer tracks (M: prefixed) or destination folder tracks first, then use <span class="kbd">fn+F8</span> to sync these changes to all source folders - <strong>this workflow ensures consistent settings across your project</strong></li>
+                <li>Use the Take Counter window for every recording session - it helps track take numbers for your take sheet and prevents confusion</li>
+                <li>The <span class="kbd">fn+F9</span> key is your main recording control - it handles arming, recording, and folder selection</li>
+                <li>The auditioning system (<span class="kbd">A</span> key) allows quick comparison between takes and channels</li>
+                <li>Rank your takes during or immediately after recording while your impressions are fresh</li>
+                <li>Use project preferences (<span class="kbd">fn+F5</span>) to customise ReaClassical's behaviour to your workflow</li>
+                <li>Save your project frequently with <span class="kbd">Command+S</span></li>
+                <li>Explore both vertical and horizontal workflows to determine which works best for different projects</li>
+                <li>Take time to learn the keyboard shortcuts - they can increase editing efficiency</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer Navigation -->
+    <div class="footer-nav">
+        <a href="index.html" class="back-btn footer-back-btn" aria-label="Back to ReaClassical Exercise Series">
+            ← Back to Series
+        </a>
+    </div>
+
+</div>
+
+<script>
+(function() {
+    // Function to handle smooth scrolling within iframe
+    function smoothScroll(target) {
+        var element = document.getElementById(target);
+        if (element) {
+            var elementPosition = element.getBoundingClientRect().top;
+            var offsetPosition = elementPosition + window.pageYOffset - 20;
+            
+            if ('scrollBehavior' in document.documentElement.style) {
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            } else {
+                window.scrollTo(0, offsetPosition);
+            }
+        }
+    }
+    
+    // Wait for DOM to be ready
+    function initTOC() {
+        var tocLinks = document.querySelectorAll('.toc-link');
+        
+        for (var i = 0; i < tocLinks.length; i++) {
+            tocLinks[i].addEventListener('click', function(e) {
+                e.preventDefault();
+                var targetId = this.getAttribute('data-target');
+                if (targetId) {
+                    smoothScroll(targetId);
+                }
+                return false;
+            });
+        }
+        
+        if (window.location.hash) {
+            var hash = window.location.hash.substring(1);
+            setTimeout(function() {
+                smoothScroll(hash);
+            }, 100);
+        }
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTOC);
+    } else {
+        initTOC();
+    }
+    
+    setTimeout(initTOC, 500);
+})();
+</script>
+
+</body>
+</html>
