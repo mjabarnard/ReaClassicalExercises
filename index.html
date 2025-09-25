@@ -100,14 +100,38 @@
             page-break-inside: avoid;
         }
         
+        /* Two Column Layout */
+        .content-columns {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        
+        .exercises-column {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .image-column {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        
         /* List Styles */
         ul {
             list-style-type: none;
             padding-left: 0;
+            margin: 0;
         }
         
         ul li {
             margin-bottom: 15px;
+            text-align: right;
         }
         
         /* Exercise Button Styles */
@@ -143,6 +167,25 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.15);
         }
         
+        /* Image Link Styles */
+        .reaclassical-link {
+            display: block;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .reaclassical-link:hover {
+            transform: scale(1.05);
+        }
+        
+        .reaclassical-link img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
         /* Special Elements */
         .kbd {
             background-color: #f7f7f7;
@@ -166,6 +209,29 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             padding: 15px;
             margin: 20px 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .content-columns {
+                flex-direction: column;
+            }
+            
+            .exercises-column,
+            .image-column {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            ul li {
+                text-align: center;
+            }
+            
+            .image-column {
+                margin-top: 30px;
+                padding-top: 30px;
+                border-top: 2px solid #eaeaea;
+            }
         }
         
         /* Print-specific styles */
@@ -206,6 +272,10 @@
                 orphans: 3;
                 widows: 3;
             }
+            
+            .content-columns {
+                flex-direction: column;
+            }
         }
         
         /* Ensure readability */
@@ -239,31 +309,41 @@
     </header>
 
     <div class="section">
-        <h2>ReaClassical Exercises</h2>
-        <p>This series of guided exercises introduces ReaClassical's workflows for classical music production in REAPER.</p>
+        <h2>Welcome!</h2>
+        <p>This series of exercises introduces ReaClassical's workflows for acoustic music production in REAPER. ReaClassical is a significantly extended version of REAPER with unique features (and quirks!) that introduce some popular recording and editing approaches to the REAPER paradigm.</p>
         
-        <ul>
-            <li>
-                <a href="Exercise-1-Project-Setup-Recording.html" class="exercise-btn" aria-label="Open ReaClassical Exercise 1: Project Setup and Recording">
-                    ReaClassical Exercise 1: Project Setup & Recording
+        <div class="content-columns">
+            <div class="exercises-column">
+                <ul>
+                    <li>
+                        <a href="Exercise-1-Project-Setup-Recording.html" class="exercise-btn" aria-label="Open ReaClassical Exercise 1: Project Setup and Recording">
+                            ReaClassical Exercise 1: Project Setup & Recording
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Exercise-2-Editing-Source-Destination-Workflows.html" class="exercise-btn" aria-label="Open ReaClassical Exercise 2: Editing and Source-Destination Workflows">
+                            ReaClassical Exercise 2: Editing and Source-Destination Workflows
+                        </a>
+                    </li>
+                    <li>
+                        <a href="exercise3.html" class="exercise-btn" aria-label="Open ReaClassical Exercise 3: Mastering and Rendering Workflows">
+                            ReaClassical Exercise 3: Mastering & Rendering Workflows
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Mac-keyboard-shortcuts.html" class="exercise-btn" aria-label="Open Mac Keyboard Shortcuts Guide">
+                            Mac Keyboard Shortcuts
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="image-column">
+                <a href="https://reaclassical.org/" class="reaclassical-link" target="_blank" rel="noopener noreferrer" aria-label="Visit the ReaClassical website">
+                    <img src="https://reaclassical.org/images/reaclassical_os.png" alt="ReaClassical logo - click to visit the ReaClassical website" title="Visit the ReaClassical website">
                 </a>
-            </li>
-            <li>
-                <a href="Exercise-2-Editing-Source-Destination-Workflows.html" class="exercise-btn" aria-label="Open ReaClassical Exercise 2: Editing and Source-Destination Workflows">
-                    ReaClassical Exercise 2: Editing and Source-Destination Workflows
-                </a>
-            </li>
-            <li>
-                <a href="exercise3.html" class="exercise-btn" aria-label="Open ReaClassical Exercise 3: Mastering and Rendering Workflows">
-                    ReaClassical Exercise 3: Mastering & Rendering Workflows
-                </a>
-            </li>
-              <li>
-                <a href="Mac-keyboard-shortcuts.html" class="exercise-btn" aria-label="Open Mac Keyboard Shortcuts Guide">
-                    Mac Keyboard Shortcuts
-                </a>
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
 </div>
 </body>
