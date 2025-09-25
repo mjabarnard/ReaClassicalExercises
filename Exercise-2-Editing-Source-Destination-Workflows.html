@@ -31,6 +31,7 @@
             margin-bottom: 30px;
             page-break-inside: avoid;
             page-break-after: avoid;
+            position: relative;
         }
         
         h1 {
@@ -48,15 +49,14 @@
             color: white;
         }
         
-        /* Download Button Styles */
-        .download-btn {
+        /* Back to Series Button Styles */
+        .back-btn {
             display: inline-block;
-            margin-top: 15px;
             padding: 10px 20px;
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.15);
             color: white;
             text-decoration: none;
-            border: 2px solid rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.4);
             border-radius: 5px;
             font-size: 0.95em;
             font-weight: 500;
@@ -64,21 +64,50 @@
             cursor: pointer;
         }
         
-        .download-btn:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.8);
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.7);
             transform: translateY(-1px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
-        .download-btn:focus {
+        .back-btn:focus {
             outline: 3px solid #3498db;
             outline-offset: 2px;
         }
         
-        .download-btn:active {
+        .back-btn:active {
             transform: translateY(0);
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        /* Back button in header */
+        .header-back-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+        }
+        
+        /* Footer back button */
+        .footer-nav {
+            background: white;
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .footer-back-btn {
+            background-color: #3498db;
+            color: white;
+            border: 2px solid #3498db;
+        }
+        
+        .footer-back-btn:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
         
         /* Section Styles */
@@ -329,6 +358,15 @@
             scroll-behavior: smooth;
         }
         
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-back-btn {
+                position: static;
+                margin-top: 20px;
+                margin-bottom: 0;
+            }
+        }
+        
         /* Print-specific styles */
         @media print {
             body {
@@ -348,7 +386,7 @@
                 page-break-after: avoid;
             }
             
-            .download-btn {
+            .back-btn, .footer-nav {
                 display: none;
             }
             
@@ -422,9 +460,11 @@
             <div style="flex-grow: 1; min-width: 250px; text-align: right;">
                 <h1>ReaClassical Exercise 2: <br>Editing and Source-Destination Workflows</h1>
                 <div class="tagline">v1.0 by Matt Barnard Mar 25 for ReaClassical 25</div>
-               
             </div>
         </div>
+        <a href="index.html" class="back-btn header-back-btn" aria-label="Back to ReaClassical Exercise Series">
+            ← Back to Series
+        </a>
     </header>
 
     <!-- Introduction -->
@@ -839,6 +879,13 @@
                 <li>Take regular breaks to rest your ears during intensive editing sessions</li>
             </ul>
         </div>
+    </div>
+
+    <!-- Footer Navigation -->
+    <div class="footer-nav">
+        <a href="index.html" class="back-btn footer-back-btn" aria-label="Back to ReaClassical Exercise Series">
+            ← Back to Series
+        </a>
     </div>
 
 </div>
