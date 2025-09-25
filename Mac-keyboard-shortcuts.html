@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base target="_self">
+    <title>ReaClassical Keyboard Shortcuts</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .page-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1A202C 0%, #4A5568 100%);
+            color: white;
+            padding: 30px 30px 70px 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            page-break-inside: avoid;
+            page-break-after: avoid;
+            position: relative;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.2em;
+            line-height: 1.2;
+            color: white;
+            page-break-after: avoid;
+        }
+        
+        .tagline {
+            font-size: 1em;
+            opacity: 0.9;
+            margin-top: 10px;
+            color: white;
+        }
+        
+        /* Back to Series Button Styles */
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 5px;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.7);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .back-btn:focus {
+            outline: 3px solid #3498db;
+            outline-offset: 2px;
+        }
+        
+        .back-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        /* Back button in header */
+        .header-back-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+        }
+        
+        /* Footer back button */
+        .footer-nav {
+            background: white;
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .footer-back-btn {
+            background-color: #3498db;
+            color: white;
+            border: 2px solid #3498db;
+        }
+        
+        .footer-back-btn:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        /* Section Styles */
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            page-break-inside: avoid;
+        }
+        
+        .section.new-page {
+            page-break-before: always;
+        }
+        
+        h2 {
+            color: #2980b9;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+            page-break-after: avoid;
+            page-break-inside: avoid;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin-top: 25px;
+            page-break-after: avoid;
+        }
+        
+        /* Special Elements */
+        .kbd {
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+            color: #333;
+            display: inline-block;
+            font-family: Monaco, Consolas, monospace;
+            font-size: 0.9em;
+            padding: 2px 5px;
+            margin: 0 2px;
+            white-space: nowrap;
+        }
+        
+        /* Table Styles */
+        .shortcuts-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            table-layout: fixed;
+        }
+        
+        .shortcuts-table th, .shortcuts-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .shortcuts-table th:first-child, .shortcuts-table td:first-child {
+            width: 30%;
+        }
+        
+        .shortcuts-table th:last-child, .shortcuts-table td:last-child {
+            width: 70%;
+        }
+        
+        .shortcuts-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #2980b9;
+        }
+        
+        .shortcuts-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        /* Mac Note Styles */
+        .mac-note {
+            background-color: #fcf8e3;
+            border-left: 4px solid #f0ad4e;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-style: italic;
+            border: 1px solid #f3e7ca;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        /* Footer Info Styles */
+        .footer-info {
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        /* Smooth scrolling for modern browsers */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-back-btn {
+                position: static;
+                margin-top: 20px;
+                margin-bottom: 0;
+            }
+            
+            .shortcuts-table th, .shortcuts-table td {
+                padding: 8px 5px;
+            }
+            
+            .shortcuts-table th:first-child, .shortcuts-table td:first-child {
+                width: 40%;
+            }
+            
+            .shortcuts-table th:last-child, .shortcuts-table td:last-child {
+                width: 60%;
+            }
+        }
+        
+        /* Print-specific styles */
+        @media print {
+            body {
+                font-size: 11pt;
+                line-height: 1.5;
+            }
+            
+            .page-container {
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            header {
+                background: #2C3E50 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                page-break-after: avoid;
+            }
+            
+            .back-btn, .footer-nav {
+                display: none;
+            }
+            
+            .section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: auto;
+            }
+            
+            /* Keep important elements together */
+            h1, h2, h3, h4 {
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
+            
+            .shortcuts-table {
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Ensure readability */
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+            orphans: 3;
+            widows: 3;
+        }
+        
+        strong {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="page-container">
+    <header>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; width: 100%;">
+            <div style="margin-right: auto; padding-bottom: 15px;">
+                <img src="https://wrdtp.ac.uk/wp-content/uploads/2018/01/york.png" alt="University of York logo" style="height: 75px; width: auto;">
+            </div>
+            <div style="flex-grow: 1; min-width: 250px; text-align: right;">
+                <h1>ReaClassical MacOS<br>Keyboard Shortcuts</h1>
+                <div class="tagline">Compiled by Matt Barnard Feb 25 for ReaClassical 25</div>
+            </div>
+        </div>
+        <a href="index.html" class="back-btn header-back-btn" aria-label="Back to ReaClassical Exercise Series">
+            ← Back to Series
+        </a>
+    </header>
+
+    <div class="section">
+        <div class="mac-note" style="margin: 0 0 20px 0;">
+            <strong>Mac Function Key Note:</strong> On Mac computers, you'll need to press <span class="kbd">fn</span> + the function key (e.g., <span class="kbd">fn+F8</span>) unless the keyboard settings have been changed to use function keys without the fn modifier.
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Project Setup & Navigation</h2>
+        <table class="shortcuts-table">
+            <tr>
+                <th>Shortcut</th>
+                <th>Function</th>
+            </tr>
+            <tr>
+                <td><span class="kbd">Home</span></td>
+                <td>Go to project start</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">End</span></td>
+                <td>Go to project end</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">`</span></td>
+                <td>View whole project horizontally</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Cmd + '</span></td>
+                <td>View whole project vertically</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Return</span></td>
+                <td>Find take by number</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Cmd + ←/→</span></td>
+                <td>Adjust peaks display zoom</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Q</span></td>
+                <td>Previous item edge/crossfade</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">W</span></td>
+                <td>Next item edge/crossfade</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">,</span></td>
+                <td>Previous marker</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">.</span></td>
+                <td>Next marker</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="section">
+        <h2>Recording & Take Organisation</h2>
+        <table class="shortcuts-table">
+            <tr>
+                <th>Shortcut</th>
+                <th>Function</th>
+            </tr>
+            <tr>
+                <td><span class="kbd">F9</span></td>
+                <td>Classical take recording mode</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Cmd + Space</span></td>
+                <td>Record-pause</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Option + F9</span></td>
+                <td>Increment take number (during silence)</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Cmd + =</span></td>
+                <td>Rank take higher</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Cmd + -</span></td>
+                <td>Rank take lower</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Cmd + 0</span></td>
+                <td>Remove take ranking</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Cmd + Return</span></td>
+                <td>Open take counter</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">T</span></td>
+                <td>Prepare takes</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">K</span></td>
+                <td>Colourise items</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="section">
+        <h2>Basic Editing</h2>
+        <table class="shortcuts-table">
+            <tr>
+                <th>Shortcut</th>
+                <th>Function</th>
+            </tr>
+            <tr>
+                <td><span class="kbd">A</span></td>
+                <td>Audition at mouse position</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Option + A</span></td>
+                <td>Audition with custom playback rate</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">D</span></td>
+                <td>Show child tracks</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">E</span></td>
+                <td>Hide child tracks</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">S</span></td>
+                <td>Split item</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">J</span></td>
+                <td>Join items</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">G</span></td>
+                <td>Group items</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">U</span></td>
+                <td>Ungroup items</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="section">
+        <h2>Crossfade Editing</h2>
+        <table class="shortcuts-table">
+            <tr>
+                <th>Shortcut</th>
+                <th>Function</th>
+            </tr>
+            <tr>
+                <td><span class="kbd">F</span></td>
+                <td>Open crossfade editor</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">X</span></td>
+                <td>Create classical crossfade</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Z</span></td>
+                <td>Extend crossfaded items (in editor)</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="section">
+        <h2>Utilities</h2>
+        <table class="shortcuts-table">
+            <tr>
+                <th>Shortcut</th>
+                <th>Function</th>
+            </tr>
+            <tr>
+                <td><span class="kbd">F5</span></td>
+                <td>ReaClassical preferences</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">F6</span></td>
+                <td>Show/hide toolbar</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">H</span></td>
+                <td>Open manual</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">O</span></td>
+                <td>Open preferences</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">P</span></td>
+                <td>Project settings</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Option + U</span></td>
+                <td>Check for updates</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="section">
+        <h2>Source-Destination (S-D) Editing</h2>
+        <table class="shortcuts-table">
+            <tr>
+                <th>Shortcut</th>
+                <th>Function</th>
+            </tr>
+            <tr>
+                <td><span class="kbd">1</span></td>
+                <td>Add destination IN marker</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">2</span></td>
+                <td>Add destination OUT marker</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">3</span></td>
+                <td>Add source IN marker</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">4</span></td>
+                <td>Add source OUT marker</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">5</span></td>
+                <td>Make S-D edit</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">F3</span></td>
+                <td>Assembly line edit</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">F4</span></td>
+                <td>Insert with time-stretching</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Cmd + Del</span></td>
+                <td>Delete all S-D markers</td>
+            </tr>
+        </table>
+     </div>
+  
+    <div class="section">
+        <h2>Mastering</h2>
+        <table class="shortcuts-table">
+            <tr>
+                <th>Shortcut</th>
+                <th>Function</th>
+            </tr>
+            <tr>
+                <td><span class="kbd">Cmd + M</span></td>
+                <td>Enter mastering mode</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Cmd + I</span></td>
+                <td>Enter automation mode</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">I</span></td>
+                <td>Insert automation</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">Y</span></td>
+                <td>Generate DDP markers</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">C</span></td>
+                <td>Generate CUE file and reports</td>
+            </tr>
+            <tr>
+                <td><span class="kbd">R</span></td>
+                <td>Render</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="footer-info">
+        <p>Commands for macOS | Windows users should substitute Ctrl for Cmd and Alt for Option</p>
+    </div>
+
+    <!-- Footer Navigation -->
+    <div class="footer-nav">
+        <a href="index.html" class="back-btn footer-back-btn" aria-label="Back to ReaClassical Exercise Series">
+            ← Back to Series
+        </a>
+    </div>
+
+</div>
+</body>
+</html>
