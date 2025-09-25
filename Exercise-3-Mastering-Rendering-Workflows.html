@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base target="_self">
+    <title>ReaClassical Exercise 3: Mastering & Rendering Workflows</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .page-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1A202C 0%, #4A5568 100%);
+            color: white;
+            padding: 30px 30px 70px 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            page-break-inside: avoid;
+            page-break-after: avoid;
+            position: relative;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.2em;
+            line-height: 1.2;
+            color: white;
+            page-break-after: avoid;
+        }
+        
+        .tagline {
+            font-size: 1em;
+            opacity: 0.9;
+            margin-top: 10px;
+            color: white;
+        }
+        
+        /* Back to Series Button Styles */
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 5px;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.7);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .back-btn:focus {
+            outline: 3px solid #3498db;
+            outline-offset: 2px;
+        }
+        
+        .back-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        /* Back button in header */
+        .header-back-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+        }
+        
+        /* Footer back button */
+        .footer-nav {
+            background: white;
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .footer-back-btn {
+            background-color: #3498db;
+            color: white;
+            border: 2px solid #3498db;
+        }
+        
+        .footer-back-btn:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        /* Section Styles */
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            page-break-inside: avoid;
+        }
+        
+        .section.new-page {
+            page-break-before: always;
+        }
+        
+        h2 {
+            color: #2980b9;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+            page-break-after: avoid;
+            page-break-inside: avoid;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin-top: 25px;
+            page-break-after: avoid;
+        }
+        
+        /* List Styles */
+        ol {
+            padding-left: 25px;
+            list-style-type: decimal !important;
+            page-break-inside: auto;
+        }
+        
+        ol > li {
+            margin-bottom: 10px;
+            list-style-type: decimal !important;
+            page-break-inside: avoid;
+            page-break-after: auto;
+        }
+        
+        /* Keep short lists together */
+        li > ul, li > ol {
+            page-break-before: avoid;
+        }
+        
+        ol ol {
+            list-style-type: lower-alpha !important;
+            padding-left: 20px;
+        }
+        
+        ol ol > li {
+            list-style-type: lower-alpha !important;
+        }
+        
+        ol ul {
+            list-style-type: lower-alpha !important;
+            padding-left: 20px;
+        }
+        
+        ol ul > li {
+            list-style-type: lower-alpha !important;
+        }
+        
+        ol ul ul, ol ol ul {
+            list-style-type: disc !important;
+            padding-left: 20px;
+            font-style: italic !important;
+        }
+        
+        ol ul ul > li, ol ol ul > li {
+            list-style-type: disc !important;
+            font-style: italic !important;
+        }
+        
+        ol ol, ol ul {
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            list-style-type: disc !important;
+        }
+        
+        ul li {
+            list-style-type: inherit;
+        }
+        
+        /* Special Elements */
+        .kbd {
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+            color: #333;
+            display: inline-block;
+            font-family: Monaco, Consolas, monospace;
+            font-size: 0.9em;
+            padding: 2px 5px;
+            margin: 0 2px;
+            white-space: nowrap;
+        }
+        
+        /* Boxes - prevent page breaks */
+        .tips, .challenge, .concept-box, .mac-note, .pro-tip {
+            page-break-inside: avoid;
+            page-break-after: auto;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .tips {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            border: 1px solid #e3e8ec;
+        }
+        
+        .tips ul {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .challenge {
+            background-color: #f0f7fb;
+            border-left: 4px solid #2ecc71;
+            border: 1px solid #d5ebf5;
+        }
+        
+        .concept-box {
+            background-color: #e8f4fc;
+            border: 1px solid #b3d7ed;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .mac-note {
+            background-color: #fcf8e3;
+            border-left: 4px solid #f0ad4e;
+            padding: 10px 15px;
+            font-style: italic;
+            border: 1px solid #f3e7ca;
+        }
+        
+        .pro-tip {
+            background-color: #e8f6e8;
+            border-left: 4px solid #28a745;
+            padding: 10px 15px;
+            font-style: italic;
+            border: 1px solid #d4edda;
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+            page-break-inside: avoid;
+        }
+        
+        .toc h2 {
+            color: #2980b9;
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        .toc ul {
+            list-style-type: none;
+            padding-left: 20px;
+            margin-left: 0;
+        }
+        
+        .toc ul li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .toc ul li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #2980b9;
+            font-weight: bold;
+        }
+        
+        .toc ul li a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .toc ul li a:hover {
+            color: #2980b9;
+            padding-left: 5px;
+            text-decoration: underline;
+        }
+        
+        .toc-link {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+            display: inline-block;
+            cursor: pointer;
+            border-bottom: 1px dotted transparent;
+        }
+
+        .toc-link:hover {
+            color: #2980b9;
+            padding-left: 5px;
+            text-decoration: underline;
+            border-bottom-color: #2980b9;
+        }
+        
+        /* Smooth scrolling for modern browsers */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-back-btn {
+                position: static;
+                margin-top: 20px;
+                margin-bottom: 0;
+            }
+        }
+        
+        /* Print-specific styles */
+        @media print {
+            body {
+                font-size: 11pt;
+                line-height: 1.5;
+            }
+            
+            .page-container {
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            header {
+                background: #2C3E50 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                page-break-after: avoid;
+            }
+            
+            .back-btn, .footer-nav {
+                display: none;
+            }
+            
+            .section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: auto;
+            }
+            
+            /* Major sections start on new page */
+            .part-section {
+                page-break-before: always;
+            }
+            
+            /* Keep important elements together */
+            h1, h2, h3, h4 {
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
+            
+            p {
+                orphans: 3;
+                widows: 3;
+            }
+            
+            .concept-box, .tips, .mac-note, .pro-tip, .challenge {
+                page-break-inside: avoid;
+            }
+            
+            /* Ensure list items don't break awkwardly */
+            li {
+                page-break-inside: avoid;
+            }
+            
+            /* Keep nested lists with their parent */
+            li > ul, li > ol {
+                page-break-before: avoid;
+            }
+            
+            /* TOC links appearance in print */
+            .toc ul li a {
+                color: black;
+                text-decoration: none;
+            }
+        }
+        
+        /* Ensure readability */
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+            orphans: 3;
+            widows: 3;
+        }
+        
+        strong {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="page-container">
+    <header>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; width: 100%;">
+            <div style="margin-right: auto; padding-bottom: 15px;">
+                <img src="https://wrdtp.ac.uk/wp-content/uploads/2018/01/york.png" alt="University of York logo" style="height: 75px; width: auto;">
+            </div>
+            <div style="flex-grow: 1; min-width: 250px; text-align: right;">
+                <h1>ReaClassical Exercise 3: <br>Mastering & Rendering Workflows</h1>
+                <div class="tagline">v1.0 by Matt Barnard Mar 25 for ReaClassical 25</div>
+            </div>
+        </div>
+        <a href="index.html" class="back-btn header-back-btn" aria-label="Back to ReaClassical Exercise Series">
+            ← Back to Series
+        </a>
+    </header>
+
+    <!-- Introduction -->
+    <div class="section">
+        <h2>Introduction</h2>
+        <p>This exercise builds on the project setup, recording, and editing workflows covered in the previous exercises. Once you've created a well-edited compilation of your best takes, it's time to focus on the final stages of production in ReaClassical, which combines mixing and mastering into an integrated workflow to create finished artefacts.</p>
+
+        <div class="mac-note">
+            <strong>Mac Function Key Note:</strong> On the studio Mac, you'll need to press <span class="kbd" aria-label="function key">fn</span> + the function key (e.g., <span class="kbd">fn+F8</span>) unless the keyboard settings have been changed to use function keys without the fn modifier.
+        </div>
+
+        <div class="concept-box">
+            <strong>Understanding ReaClassical's Mastering Mode:</strong> In ReaClassical, the 'mastering' stage combines mixing and mastering processes into a unified workflow. This integrated approach allows you to handle all aspects of finalising your project: balancing microphone levels, applying tonal adjustments, controlling dynamics, creating track spacing and transitions, managing metadata, and rendering to various formats.
+        </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="toc">
+        <h2>Contents</h2>
+        <ul>
+            <li><span class="toc-link" onclick="document.getElementById('part1').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Part 1: Entering Mastering Mode</span></li>
+            <li><span class="toc-link" onclick="document.getElementById('part2').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Part 2: Mixing and Tonal Balance</span></li>
+            <li><span class="toc-link" onclick="document.getElementById('part3').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Part 3: Track Spacing and CD Marker Creation</span></li>
+            <li><span class="toc-link" onclick="document.getElementById('part4').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Part 4: Rendering and Exporting</span></li>
+            <li><span class="toc-link" onclick="document.getElementById('part5').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Part 5: Project Management and Archiving</span></li>
+            <li><span class="toc-link" onclick="document.getElementById('closing').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Closing Remarks</span></li>
+        </ul>
+    </div>
+
+    <!-- Part 1 -->
+    <div id="part1" class="section part-section">
+        <h2>Part 1: Entering Mastering Mode</h2>
+
+        <div class="concept-box">
+            <strong>Mastering Mode:</strong> ReaClassical's mastering mode transforms the project view to focus on finalising your recording. It makes mixer tracks visible in the arrange window, provides access to automation lanes, and hides source material to declutter your workspace. This allows you to concentrate on balancing all microphone channels, applying processing, and preparing for output formats without the distraction of unused source material.
+        </div>
+
+        <ol>
+            <li><strong>Open your edited project:</strong>
+                <ul>
+                    <li>Open the ReaClassical project from the previous exercise where you completed your editing</li>
+                    <li>Ensure that your destination folder contains the complete, edited piece with all crossfades finalised</li>
+                    <li>If you're using a vertical workflow, verify that all edits in the destination folder are complete before proceeding</li>
+                </ul>
+            </li>
+            <li><strong>Enter mastering mode:</strong>
+                <ul>
+                    <li>Press <span class="kbd">Command+M</span> to switch to mastering mode</li>
+                    <ul>
+                        <li>Notice how the mixer tracks (labelled with "M:" prefix) now appear in the arrange window</li>
+                        <li>Source folders are hidden to declutter the workspace</li>
+                        <li>The destination folder remains visible with your edited material</li>
+                    </ul>
+                    <li>Take a moment to examine the new view - this is your mastering workspace</li>
+                </ul>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> Mastering mode allows you to focus on the final sound without the distraction of source materials. All your mixer tracks are now visible in both the arrange window and mixer panel, giving you quick access to all important controls.
+                </div>
+            </li>
+            <li><strong>Explore track relationships in mastering mode:</strong>
+                <ul>
+                    <li>Note that all audio still flows through the mixer tracks to the RCMASTER bus</li>
+                    <li>Any changes made to mixer tracks affect all instances of those microphone channels</li>
+                    <li>Select the destination folder and press <span class="kbd">D</span> to display its child tracks if they're hidden</li>
+                </ul>
+            </li>
+            <li><strong>Prepare for automation:</strong>
+                <ul>
+                    <li>Press <span class="kbd">Command+I</span> to enter automation mode</li>
+                    <ul>
+                        <li>Notice that all envelope buttons turn blue ('latched preview' mode)</li>
+                        <li>A message box appears with instructions for using automation</li>
+                    </ul>
+                    <li>This mode allows you to create static mixer scenes across your project, which is useful for different sections that may need different mix settings</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Part 2 -->
+    <div id="part2" class="section part-section">
+        <h2>Part 2: Mixing and Tonal Balance</h2>
+
+        <div class="concept-box">
+            <strong>Mixing Principles for Classical Music:</strong> Classical music mixing typically focuses on natural tonal balance, proper spatial positioning, and transparent dynamics processing. Unlike popular music, the goal is usually to present an authentic representation of the performance rather than to create a heavily processed sound. In ReaClassical, mixing is integrated into the mastering mode, allowing you to make adjustments to individual microphone channels, create submixes, and apply processing all within the same workflow, while maintaining the integrity of the performance.
+        </div>
+
+        <ol>
+            <li><strong>Setting static mix scenes with automation:</strong>
+                <ul>
+                    <li>With automation mode active (<span class="kbd">Command+I</span>), position your edit cursor at the start of your project</li>
+                    <li>Adjust volume faders, pan positions, and any other mixer settings to create your initial balance</li>
+                    <li>Press <span class="kbd">I</span> to insert these settings as automation points at the edit cursor position</li>
+                    <ul>
+                        <li>Notice how envelope points are created for each adjusted parameter</li>
+                        <li>These envelope points represent a "snapshot" of your mixer settings</li>
+                    </ul>
+                    <li>If your project has distinct sections that need different balances (such as a quiet passage followed by a tutti section), position the edit cursor at the transition point</li>
+                    <li>Adjust mixer settings for the new section and press <span class="kbd">I</span> again to create another set of envelope points</li>
+                    <li>When finished setting automation points, press <span class="kbd">Command+I</span> again to exit automation mode</li>
+                    <ul>
+                        <li>The envelope buttons will turn green ('read' mode)</li>
+                    </ul>
+                </ul>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> For classical music, subtle automation changes between sections often create the most natural sound. It's better to make small, gradual adjustments than dramatic shifts in the mix.
+                </div>
+            </li>
+            <li><strong>Working with automation lanes:</strong>
+                <ul>
+                    <li>Use the pencil tool or click-and-drag to create or adjust automation points</li>
+                    <li>To temporarily bring up a spot microphone during a solo passage:</li>
+                    <ul>
+                        <li>Create a time selection around the solo passage</li>
+                        <li>Create points at the beginning and end of the selection</li>
+                        <li>Shift-Drag the middle section upward to create a temporary volume increase, adjust nodes to add smooth transitions</li>
+                    </ul>
+                    <li>To hide automation lanes, select a track(s) and press <span class="kbd">E</span></li>
+                    <li>To show all lanes again, press <span class="kbd">D</span></li>
+                </ul>
+            </li>
+            <li><strong>Item-level volume envelopes for peak control:</strong>
+                <ul>
+                    <li>For more detailed control over specific passages, you can work with volume envelopes on individual items</li>
+                    <li>Select the audio item in the destination folder (child track, not the parent folder)</li>
+                    <li>Press <span class="kbd">V</span> to add a volume envelope to the item</li>
+                    <ul>
+                        <li>Notice the volume line that appears on the audio item</li>
+                    </ul>
+                    <li>Click on the line to add points, then drag them to adjust volume at specific moments</li>
+                    <li>Use this approach for correcting short peaks or issues that don't require track-level automation</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Part 3 -->
+    <div id="part3" class="section part-section">
+        <h2>Part 3: Track Spacing and CD Marker Creation</h2>
+
+        <div class="concept-box">
+            <strong>Track Spacing and Markers:</strong> For classical albums with multiple movements or pieces, proper spacing between tracks is crucial for the listening experience. ReaClassical provides tools to easily adjust track spacing and automatically generate CD markers that respect CD standards. This allows for effortless creation of DDP filesets, CUE files, and individual track exports.
+        </div>
+
+        <ol>
+            <li><strong>Preparing for track markers:</strong>
+                <ul>
+                    <li>If your project contains multiple movements or pieces that should be separate tracks:</li>
+                    <ul>
+                        <li>Ensure each track start has a distinct item (or crossfaded items) in the destination folder</li>
+                        <li>Position these items with appropriate spacing between tracks</li>
+                        <li>For attached movements (attacca), maintain the musical connection with crossfades</li>
+                        <li>For separate movements, create natural-sounding gaps (typically 2-5 seconds)</li>
+                    </ul>
+                    <li>If working with a previously horizontal workflow, press <span class="kbd">Command+T</span> to remove any unwanted item names</li>
+                </ul>
+            </li>
+            <li><strong>Repositioning tracks and adjusting spacing:</strong>
+                <ul>
+                    <li>To adjust the spacing between all tracks uniformly:</li>
+                    <ul>
+                        <li>Press <span class="kbd">Command+Y</span> and enter a desired gap length in seconds</li>
+                        <li>Notice how all items are spaced according to your specified value</li>
+                    </ul>
+                    <li>To change the position of a specific track:</li>
+                    <ul>
+                        <li>Select the item that starts the track</li>
+                        <li>Use <span class="kbd">Command+←</span> or <span class="kbd">Command+→</span> to shift the track left or right</li>
+                        <li>Note that gaps and crossfades are preserved during this operation</li>
+                    </ul>
+                    <li>This allows you to easily change the track order if needed</li>
+                </ul>
+            </li>
+            <li><strong>Adding room tone (if needed):</strong>
+                <ul>
+                    <li>Press <span class="kbd">#</span> and select "RoomTone" to add a dedicated room tone track</li>
+                    <ul><li><strong>Mac Workaround:</strong> If the # key doesn't work on the Mac (which is a known issue), go to the main menu and select Actions → Show Action List, then search for "special tracks" and run that action by double-clicking it</li></ul>
+                    <li>Import clean room tone recorded from your session or generate synthetic room tone</li>
+                    <li>Place this audio across the entire project timeline</li>
+                    <li>When you create CD markers (next step), volume automation will be automatically generated for seamless transitions between music and silence</li>
+                </ul>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> Room tone creates a more natural listening experience by avoiding complete digital silence between tracks. For classical recordings, this helps maintain the illusion of a continuous performance space.
+                </div>
+            </li>
+            <li><strong>Naming tracks and adding metadata:</strong>
+                <ul>
+                    <li>For each item that should become a CD track start, select it and press <span class="kbd">F2</span></li>
+                    <li>Enter the track name (e.g., "I. Allegro", "II. Adagio", etc.)</li>
+                    <ul>
+                        <li>If you want a visual CD player countdown into a track, start the name with an exclamation mark (e.g., "!III. Scherzo")</li>
+                        <li>Do not name items that are not track starts (the system will recognise these as part of the previous track)</li>
+                    </ul>
+                    <li>For an Easter egg track (hidden audio in the pre-gap), simply don't name the first item</li>
+                </ul>
+            </li>
+            <li><strong>Creating CD markers automatically:</strong>
+                <ul>
+                    <li>Press <span class="kbd">Y</span> to run the Create CD Markers function</li>
+                    <li>Enter album metadata when prompted:</li>
+                    <ul>
+                        <li>UPC/EAN code (if available)</li>
+                        <li>ISRC number pattern (if available)</li>
+                        <li>Album title</li>
+                        <li>Performer name</li>
+                        <li>Composer name</li>
+                        <li>Genre (typically "Classical")</li>
+                    </ul>
+                    <li>Review the markers and regions that are automatically created:</li>
+                    <ul>
+                        <li>Notice how markers are placed at the start of each named item</li>
+                        <li>Observe the 2-second pre-gap before the first track</li>
+                        <li>See the CD player countdown markers (if you used "!" prefixes)</li>
+                        <li>Check the room tone automation that's been generated (if you added a room tone track)</li>
+                    </ul>
+                </ul>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> The Create CD Markers function automates the creation of aligned markers, regions, and room tone automation in one step. If you later adjust spacing between tracks, simply run the function again to update everything.
+                </div>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Part 4 -->
+    <div id="part4" class="section part-section">
+        <h2>Part 4: Rendering and Exporting</h2>
+
+        <div class="concept-box">
+            <strong>Rendering Options:</strong> ReaClassical provides several pre-configured rendering options designed specifically for classical music distribution. These include high-resolution stereo files, DDP filesets for CD manufacturing, and various consumer formats. Understanding these options ensures you can deliver your project in any required format.
+        </div>
+
+        <ol>
+            <li><strong>Setting appropriate loudness levels:</strong>
+                <ul>
+                    <li>For classical music, aim for an integrated LUFS measurement between -23 to -18 LUFS</li>
+                    <li>Use REAPER's built-in JS Loudness Meter to check your levels:</li>
+                    <ul>
+                        <li>Right-click on the FX button of the Master track and add "JS: Loudness Meter"</li>
+                        <li>Play through the loudest sections of your project</li>
+                        <li>Note the integrated LUFS measurement</li>
+                    </ul>
+                    <li>Adjust the RCMASTER track volume as needed to achieve the target loudness</li>
+                    <li>Ensure peaks remain below -1dBTP (true peak) to avoid potential clipping during conversion</li>
+                </ul>
+            </li>
+            <li><strong>Using render presets:</strong>
+                <ul>
+                    <li>Press <span class="kbd">R</span> to open the render dialogue</li>
+                    <li>Click on the "Presets" button, then "All Settings"</li>
+                    <li>ReaClassical includes several useful rendering presets:</li>
+                    <ul>
+                        <li>"ReaClassical - Album (16-bit WAV)" for CD-quality full album export</li>
+                        <li>"ReaClassical - Album (24-bit WAV)" for high-resolution full album export</li>
+                        <li>"ReaClassical - Album (FLAC)" for compressed lossless full album export</li>
+                        <li>"ReaClassical - Individual Tracks (16-bit WAV)" for CD-quality separate track export</li>
+                        <li>"ReaClassical - Individual Tracks (24-bit WAV)" for high-resolution separate track export</li>
+                    </ul>
+                    <li>Select the appropriate preset for your current needs</li>
+                </ul>
+            </li>
+            <li><strong>DDP fileset creation:</strong>
+                <ul>
+                    <li>To create a DDP fileset for professional CD manufacturing:</li>
+                    <ul>
+                        <li>Select the "ReaClassical - DDP" preset in the render dialogue</li>
+                        <li>Choose a destination folder</li>
+                        <li>Click "Render" to create the DDP fileset</li>
+                        <li>The fileset will include all necessary files for CD replication, including your metadata</li>
+                    </ul>
+                    <li>This is the preferred method for delivering to professional CD manufacturing plants</li>
+                </ul>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> DDP filesets are the industry standard for CD manufacturing. They contain all the necessary information for creating a CD, including audio, track markers, ISRC codes, and other metadata. Using DDP ensures that your CD will be manufactured exactly as intended.
+                </div>
+            </li>
+            <li><strong>Creating CUE files and album reports:</strong>
+                <ul>
+                    <li>Press <span class="kbd">C</span> to generate a CUE file and album reports</li>
+                    <li>Verify or adjust the information that appears in the dialogue:</li>
+                    <ul>
+                        <li>File extension (WAV, FLAC, etc.)</li>
+                        <li>Album title</li>
+                        <li>Performer</li>
+                        <li>Composer</li>
+                        <li>Genre</li>
+                        <li>Year</li>
+                    </ul>
+                    <li>Click "OK" to generate the files</li>
+                    <li>This creates three useful files in your project folder:</li>
+                    <ul>
+                        <li>A CUE file that can be used with the full album audio file</li>
+                        <li>A plaintext album report with track timings and metadata</li>
+                        <li>An HTML album report with the same information in a formatted display</li>
+                    </ul>
+                    <li>The album reports are valuable for providing timing and metadata information to clients, labels, or CD manufacturers</li>
+                </ul>
+            </li>
+            <li><strong>Individual track export:</strong>
+                <ul>
+                    <li>To export individual audio files for each track:</li>
+                    <ul>
+                        <li>Select the "ReaClassical - Individual Tracks (24-bit WAV)" preset</li>
+                        <li>Verify that "Regions" is selected in the "Render" dropdown</li>
+                        <li>Choose your destination folder</li>
+                        <li>Click "Render" to create individual files for each track</li>
+                    </ul>
+                    <li>These files are useful for digital distribution platforms, streaming services, and providing preview files to clients</li>
+                </ul>
+            </li>
+            <li><strong>Using dither for bit depth reduction:</strong>
+                <ul>
+                    <li>When rendering to 16-bit (CD quality) from a higher bit depth project:</li>
+                    <ul>
+                        <li>Ensure dither is applied to avoid quantisation distortion</li>
+                        <li>ReaClassical render presets include appropriate dither settings</li>
+                        <li>Alternatively, add RCDither as the final plugin on the master bus before rendering</li>
+                    </ul>
+                    <li>When using RCDither, select "16-bit" from the dropdown and disable REAPER's built-in dither</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Part 5 -->
+    <div id="part5" class="section part-section">
+        <h2>Part 5: Project Management and Archiving</h2>
+
+        <div class="concept-box">
+            <strong>Project Management:</strong> Proper archiving of your classical recording projects ensures that you can return to them in the future if needed. This includes organising files, creating backups, and documenting your work. ReaClassical's project structure makes this process straightforward.
+        </div>
+
+        <ol>
+            <li><strong>Document your project:</strong>
+                <ul>
+                    <li>Open the project notes by pressing <span class="kbd">P</span> (Project Settings)</li>
+                    <li>Add detailed information about the recording:</li>
+                    <ul>
+                        <li>Recording date and location</li>
+                        <li>Performers and instruments</li>
+                        <li>Microphone placement and equipment used</li>
+                        <li>Any special techniques or challenges in the production</li>
+                    </ul>
+                    <li>Use SWS Notes by pressing <span class="kbd">N</span> to add notes to specific items, tracks, or markers</li>
+                    <li>This documentation will be invaluable if you need to revisit the project in the future</li>
+                </ul>
+            </li>
+            <li><strong>Clean up the project folder:</strong>
+                <ul>
+                    <li>Go to <span class="kbd">File > Clean current project directory</span></li>
+                    <li>Review the list of unused media files</li>
+                    <li>If you're certain you don't need these files, allow REAPER to move them to the Trash/Recycle Bin</li>
+                    <li>Note: When in doubt, keep everything! Storage is relatively inexpensive compared to the value of your recordings</li>
+                </ul>
+            </li>
+            <li><strong>Create a project backup:</strong>
+                <ul>
+                    <li>Go to <span class="kbd">File > Save project as...</span></li>
+                    <li>Choose a name that includes the date (e.g., "Mozart_String_Quartet_Final_2024-02-25")</li>
+                    <li>Ensure "Create subdirectory for project" is checked</li>
+                    <li>Select "Copy all media into project directory"</li>
+                    <li>This creates a fully self-contained project folder that includes all necessary media</li>
+                </ul>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> Creating a complete project backup with all media is essential for long-term archiving. Even if file formats or software change in the future, having all the original media files ensures you can always recreate your work.
+                </div>
+            </li>
+            <li><strong>Organise your renders:</strong>
+                <ul>
+                    <li>Create a well-organised folder structure for your renders:</li>
+                    <ul>
+                        <li>"Master" folder for the highest quality full mixes</li>
+                        <li>"CD" folder for DDP filesets and CD-ready 16-bit WAV files</li>
+                        <li>"Distribution" folder for various formats needed for online platforms</li>
+                    </ul>
+                    <li>Include the album reports with your deliverables for reference</li>
+                    <li>Consider including a PDF of the score if available, especially for commissioned or premiere recordings</li>
+                </ul>
+            </li>
+            <li><strong>Archive to external storage:</strong>
+                <ul>
+                    <li>Copy your complete project folder and renders to at least two separate external storage devices</li>
+                    <li>Consider using different types of storage (e.g., SSD and cloud storage) for redundancy</li>
+                    <li>Store one copy offsite if possible to protect against physical damage or theft</li>
+                    <li>For extremely important projects, consider creating a checksum file to verify data integrity over time</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Closing Remarks -->
+    <div id="closing" class="section part-section">
+        <h2>Closing Remarks</h2>
+
+        <p>You've now completed an introduction to ReaClassical's integrated mixing, mastering and rendering workflows. The project you've created demonstrates the core principles of finalising classical music recordings, including:</p>
+
+        <ul>
+            <li>Using automation for static mix scenes and subtle dynamic adjustments</li>
+            <li>Applying transparent EQ and compression appropriate for classical music</li>
+            <li>Creating properly spaced and marked CD tracks</li>
+            <li>Generating room tone automation for natural transitions</li>
+            <li>Rendering in various formats with appropriate metadata</li>
+            <li>Documenting and archiving your project for future reference</li>
+        </ul>
+
+        <p>These skills form the foundation of professional classical music production and will be useful to you in future projects.</p>
+
+        <div class="tips">
+            <h3>Tips for finalising projects in ReaClassical</h3>
+            <ul>
+                <li>For classical music, aim for integrated loudness around -23 to -18 LUFS - much quieter than popular music standards</li>
+                <li>Use minimal dynamics processing - typically no more than 1-2dB of gain reduction on the loudest passages</li>
+                <li>Allow for natural dynamic range - don't compress the life out of quiet passages</li>
+                <li>Create natural-sounding spaces between movements - typically 2-5 seconds unless indicated otherwise in the score</li>
+                <li>Use room tone to avoid complete digital silence between tracks</li>
+                <li>Always apply dither when reducing bit depth (e.g., from 24-bit to 16-bit)</li>
+                <li>Generate album reports to provide detailed timing information to clients, labels or manufacturers</li>
+                <li>Save multiple versions of your project at key stages of finalisation</li>
+                <li>For revisions, it's often easier to rerun the Create CD Markers function than to manually adjust markers</li>
+                <li>Listen to your final render on different playback systems before delivery</li>
+                <li>Remember that less is more - the best classical mastering is often the most transparent</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer Navigation -->
+    <div class="footer-nav">
+        <a href="index.html" class="back-btn footer-back-btn" aria-label="Back to ReaClassical Exercise Series">
+            ← Back to Series
+        </a>
+    </div>
+
+</div>
+
+<script>
+(function() {
+    // Function to handle smooth scrolling within iframe
+    function smoothScroll(target) {
+        var element = document.getElementById(target);
+        if (element) {
+            var elementPosition = element.getBoundingClientRect().top;
+            var offsetPosition = elementPosition + window.pageYOffset - 20;
+            
+            if ('scrollBehavior' in document.documentElement.style) {
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            } else {
+                window.scrollTo(0, offsetPosition);
+            }
+        }
+    }
+    
+    // Wait for DOM to be ready
+    function initTOC() {
+        var tocLinks = document.querySelectorAll('.toc-link');
+        
+        for (var i = 0; i < tocLinks.length; i++) {
+            tocLinks[i].addEventListener('click', function(e) {
+                e.preventDefault();
+                var targetId = this.getAttribute('data-target');
+                if (targetId) {
+                    smoothScroll(targetId);
+                }
+                return false;
+            });
+        }
+        
+        if (window.location.hash) {
+            var hash = window.location.hash.substring(1);
+            setTimeout(function() {
+                smoothScroll(hash);
+            }, 100);
+        }
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTOC);
+    } else {
+        initTOC();
+    }
+    
+    setTimeout(initTOC, 500);
+})();
+</script>
+
+</body>
+</html>
