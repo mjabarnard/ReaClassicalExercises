@@ -298,6 +298,7 @@
             left: 0;
             color: #2980b9;
             font-weight: bold;
+            aria-hidden: true;
         }
         
         .toc ul li a {
@@ -308,26 +309,15 @@
             cursor: pointer;
         }
         
-        .toc ul li a:hover {
+        .toc ul li a:hover, .toc ul li a:focus {
             color: #2980b9;
             padding-left: 5px;
             text-decoration: underline;
-        }
-        
-        .toc-link {
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.2s;
-            display: inline-block;
-            cursor: pointer;
-            border-bottom: 1px dotted transparent;
         }
 
-        .toc-link:hover {
-            color: #2980b9;
-            padding-left: 5px;
-            text-decoration: underline;
-            border-bottom-color: #2980b9;
+        .toc ul li a:focus {
+            outline: 2px solid #3498db;
+            outline-offset: 2px;
         }
         
         /* Smooth scrolling for modern browsers */
@@ -458,12 +448,12 @@
     <div class="toc">
         <h2>Contents</h2>
         <ul>
-            <li><span class="toc-link" onclick="document.getElementById('part1').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Part 1: Entering Mastering Mode</span></li>
-            <li><span class="toc-link" onclick="document.getElementById('part2').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Part 2: Mixing and Tonal Balance</span></li>
-            <li><span class="toc-link" onclick="document.getElementById('part3').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Part 3: Track Spacing and CD Marker Creation</span></li>
-            <li><span class="toc-link" onclick="document.getElementById('part4').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Part 4: Rendering and Exporting</span></li>
-            <li><span class="toc-link" onclick="document.getElementById('part5').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Part 5: Project Management and Archiving</span></li>
-            <li><span class="toc-link" onclick="document.getElementById('closing').scrollIntoView({behavior:'smooth'}); return false;" style="cursor:pointer; color:inherit;">Closing Remarks</span></li>
+            <li><a href="#part1">Part 1: Entering Mastering Mode</a></li>
+            <li><a href="#part2">Part 2: Mixing and Tonal Balance</a></li>
+            <li><a href="#part3">Part 3: Track Spacing and CD Marker Creation</a></li>
+            <li><a href="#part4">Part 4: Rendering and Exporting</a></li>
+            <li><a href="#part5">Part 5: Project Management and Archiving</a></li>
+            <li><a href="#closing">Closing Remarks</a></li>
         </ul>
     </div>
 
@@ -879,13 +869,13 @@
 
 <script>
 (function() {
-    // Function to handle smooth scrolling within iframe
+    // Function to handle smooth scrolling
     function smoothScroll(target) {
         var element = document.getElementById(target);
         if (element) {
             var elementPosition = element.getBoundingClientRect().top;
             var offsetPosition = elementPosition + window.pageYOffset - 20;
-            
+
             if ('scrollBehavior' in document.documentElement.style) {
                 window.scrollTo({
                     top: offsetPosition,
@@ -896,22 +886,22 @@
             }
         }
     }
-    
+
     // Wait for DOM to be ready
     function initTOC() {
-        var tocLinks = document.querySelectorAll('.toc-link');
-        
+        var tocLinks = document.querySelectorAll('.toc a[href^="#"]');
+
         for (var i = 0; i < tocLinks.length; i++) {
             tocLinks[i].addEventListener('click', function(e) {
                 e.preventDefault();
-                var targetId = this.getAttribute('data-target');
+                var targetId = this.getAttribute('href').substring(1);
                 if (targetId) {
                     smoothScroll(targetId);
                 }
                 return false;
             });
         }
-        
+
         if (window.location.hash) {
             var hash = window.location.hash.substring(1);
             setTimeout(function() {
@@ -919,14 +909,14 @@
             }, 100);
         }
     }
-    
+
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initTOC);
     } else {
         initTOC();
     }
-    
+
     setTimeout(initTOC, 500);
 })();
 </script>
