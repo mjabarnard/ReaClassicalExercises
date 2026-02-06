@@ -312,16 +312,7 @@
         .toc ul li {
             margin: 8px 0;
             position: relative;
-            padding-left: 25px;
-        }
-        
-        .toc ul li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #2980b9;
-            font-weight: bold;
-            aria-hidden: true;
+            padding-left: 0;
         }
         
         .toc ul li a {
@@ -449,7 +440,7 @@
             </div>
             <div style="flex-grow: 1; min-width: 250px; text-align: right;">
                 <h1>ReaClassical Exercise 2: <br>Editing and Source-Destination Workflows</h1>
-                <div class="tagline">v1.0 by Matt Barnard Mar 25 for ReaClassical 25</div>
+                <div class="tagline">v2.0 by Matt Barnard Feb 26 for ReaClassical 26</div>
             </div>
         </div>
         <a href="index.html" class="back-btn header-back-btn" aria-label="Back to ReaClassical Exercise Series">
@@ -460,10 +451,10 @@
     <!-- Introduction -->
     <div class="section">
         <h2>Introduction</h2>
-        <p>This guided exercise introduces you to ReaClassical's editing tools, with a focus on source-destination editing, crossfade techniques, and the classical take compilation process. This exercise builds on the project setup and recording workflows covered in the previous exercise.</p>
+        <p>This exercise introduces you to ReaClassical's editing tools, with a focus on source-destination editing, crossfade techniques, and the classical take compilation process. This exercise builds on the project setup and recording workflows covered in Exercise 1.</p>
 
         <div class="mac-note">
-            <strong>Mac Function Key Note:</strong> On the studio Mac, you'll need to press <span class="kbd" aria-label="function key">fn</span> + the function key (e.g., <span class="kbd">fn+F8</span>) unless the keyboard settings have been changed to use function keys without the fn modifier.
+            <strong>Keyboard Shortcuts:</strong> This guide shows Mac shortcuts first with Windows equivalents in brackets. On the studio Mac, you'll need to press <span class="kbd" aria-label="function key">fn</span> + the function key (e.g., <span class="kbd">fn+F5</span>) unless the keyboard settings have been changed to use function keys without the fn modifier.
         </div>
 
         <div class="concept-box">
@@ -472,18 +463,17 @@
     </div>
 
     <!-- Table of Contents -->
-
-<div class="toc">
-    <h2>Contents</h2>
-    <ul>
-        <li><a href="#part1">Part 1: Preparing Takes for Editing</a></li>
-        <li><a href="#part2">Part 2: Source-Destination Editing</a></li>
-        <li><a href="#part3">Part 3: Fine-tuning Edits with the Crossfade Editor</a></li>
-        <li><a href="#part4">Part 4: Advanced Editing Techniques</a></li>
-        <li><a href="#part5">Part 5: Finalising the Edit</a></li>
-        <li><a href="#closing">Closing Remarks</a></li>
-    </ul>
-</div>
+    <div class="toc">
+        <h2>Contents</h2>
+        <ul>
+            <li><a href="#part1">Part 1: Preparing Takes for Editing</a></li>
+            <li><a href="#part2">Part 2: Source-Destination Editing</a></li>
+            <li><a href="#part3">Part 3: Fine-tuning Edits with the Crossfade Editor</a></li>
+            <li><a href="#part4">Part 4: Advanced Editing Techniques</a></li>
+            <li><a href="#part5">Part 5: Finalising the Edit</a></li>
+            <li><a href="#summary">Summary</a></li>
+        </ul>
+    </div>
 
     <!-- Part 1 -->
     <div id="part1" class="section part-section">
@@ -496,9 +486,9 @@
         <ol>
             <li><strong>Open your project and check take organisation:</strong>
                 <ul>
-                    <li>Open the ReaClassical project from the previous exercise (or load an existing one with recorded takes)</li>
+                    <li>Open the ReaClassical project from Exercise 1 (or load an existing one with recorded takes)</li>
                     <ul>
-                        <li>Ensure you have at least 3-4 takes in your project (if not, record more following the previous exercise)</li>
+                        <li>Ensure you have at least 3-4 takes in your project (if not, record more following Exercise 1)</li>
                         <li>Verify that your project is in vertical workflow mode (destination folder at top with source folders below)</li>
                         <li>Take a moment to audition your takes using <span class="kbd">A</span> to remind yourself of the recorded material</li>
                     </ul>
@@ -509,8 +499,8 @@
                     <li>Press <span class="kbd">T</span> to run the Prepare Takes function</li>
                     <ul>
                         <li>Watch as ReaClassical processes your takes - establishing groups and colour coding</li>
-                        <li>Notice how the destination folder items turn blue (if you have some present) and source folder items turn green</li>
-                        <li>These colours match the source-destination marker colours that will be used later</li>
+                        <li>Notice how the destination folder items turn blue</li>
+                        <li>Source folder items remain their default colour</li>
                     </ul>
                     <li>If working with a single parent track containing child tracks, note that a muted guide track is also created</li>
                     <li>Try selecting and moving one item in a take - notice how all items in that take move together</li>
@@ -518,26 +508,29 @@
                 </ul>
                 
                 <figure>
-                    <img src="https://i.ibb.co/KpF7TMhK/Prepared-Takes.jpg" 
+                    <img src="https://i.ibb.co/KmF7TMhK/Prepared-Takes.jpg" 
                          alt="Screenshot of ReaClassical interface showing prepared takes with color-coded tracks: blue destination folder at top and green source folders below"
                          title="ReaClassical interface after running Prepare Takes - color-coded destination (blue) and source (green) tracks">
                     <figcaption>
-                        Figure 1: ReaClassical interface after running Prepare Takes, showing color-coded destination (blue) and source (green) tracks
+                        Figure 1: ReaClassical interface after running Prepare Takes - in RC26, destination items turn blue while source folders remain their default colour (this image shows earlier behaviour)
                     </figcaption>
                 </figure>
                 
                 <div class="pro-tip">
-                    <strong>Tip:</strong> The Prepare Takes function establishes important relationships between tracks. Always run this before beginning editing work, and re-run if you add new takes to ensure everything is properly organised.
+                    <strong>Tip:</strong> The Prepare Takes function establishes important relationships between tracks. Always run this before beginning editing work, and re-run if you add new takes to ensure everything is properly organised. Note that Prepare Takes will automatically run when you place your first S-D marker if you haven't already run it manually.
                 </div>
             </li>
             <li><strong>Set up your workspace for editing:</strong>
                 <ul>
                     <li>Make sure your destination folder tracks are visible (<span class="kbd">D</span> on the parent track if children are hidden)</li>
                     <li>For the source folders, decide whether you want to see all child tracks or just the parents:</li>
-                    <ul><li>For a simplified view, select each source folder parent track and press <span class="kbd">E</span> to hide children</li></ul>
-                    <li>For detailed editing, select each folder and press <span class="kbd">D</span> to show all children</li>
-                    <li>Adjust your vertical zoom (<span class="kbd">Shift+↑</span> or <span class="kbd">Shift+↓</span>) until you can see the waveforms clearly</li>
-                    <li>Adjust horizontal zoom as needed to see a reasonable segment of audio</li>
+                    <ul>
+                        <li>For a simplified view, select each source folder parent track and press <span class="kbd">E</span> to hide children</li>
+                        <li>For detailed editing, select each folder and press <span class="kbd">D</span> to show all children</li>
+                    </ul>
+                    <li>Adjust your vertical zoom using <span class="kbd">Command</span> [<span class="kbd">Ctrl</span>] + mouse wheel until you can see the waveforms clearly</li>
+                    <li>Adjust horizontal zoom using the mouse wheel (without modifiers) to see a reasonable segment of audio</li>
+                    <li>Press <span class="kbd">`</span> (backtick) to see the entire project horizontally if needed</li>
                 </ul>
             </li>
         </ol>
@@ -548,7 +541,7 @@
         <h2>Part 2: Source-Destination Editing</h2>
 
         <div class="concept-box">
-            <strong>S-D Editing Principles:</strong> Source-destination editing involves placing markers to define where edited material will go (destination) and where it will come from (source). ReaClassical supports 2-point, 3-point, and 4-point editing. With 4-point editing (the most common for classical music), you define both the start and end points of the destination and source regions. This allows for precise replacement of sections while maintaining musical timing.
+            <strong>S-D Editing Principles:</strong> Source-destination editing involves placing markers to define where edited material will go (destination) and where it will come from (source). ReaClassical supports 2-point, 3-point, and 4-point editing. With 4-point editing (the most common for classical music), you define both the start and end points of the destination and source regions. This allows for precise replacement of sections while maintaining musical timing. In ReaClassical 26, S-D editing is truly anywhere to anywhere - you can place source and destination markers on any folder in your project.
         </div>
 
         <ol>
@@ -556,18 +549,30 @@
                 <ul>
                     <li>ReaClassical uses a marker system with distinct colours for source and destination points:</li>
                     <ul>
-                        <li><span class="kbd">1</span> = Destination IN (blue) - where your edit will start in the destination</li>
-                        <li><span class="kbd">2</span> = Destination OUT (blue) - where your edit will end in the destination</li>
-                        <li><span class="kbd">3</span> = Source IN (green) - where to start taking material from the source</li>
-                        <li><span class="kbd">4</span> = Source OUT (green) - where to stop taking material from the source</li>
+                        <li><span class="kbd">1</span> = Destination IN - where your edit will start in the destination</li>
+                        <li><span class="kbd">2</span> = Destination OUT - where your edit will end in the destination</li>
+                        <li><span class="kbd">3</span> = Source IN - where to start taking material from the source</li>
+                        <li><span class="kbd">4</span> = Source OUT - where to stop taking material from the source</li>
+                        <li>Markers are coloured based on the items in the associated destination and source folders</li>
                     </ul>
                     <li>These markers can be placed at the edit cursor position or, with appropriate settings in preferences, at the mouse position</li>
-                    <li>Open ReaClassical preferences (<span class="kbd">fn+F5</span>) and check if "Add S-D Markers at Mouse Hover" is set to 1 for hover placement</li>
+                    <li>Open ReaClassical preferences (<span class="kbd">Command+F5</span> [<span class="kbd">Ctrl+F5</span>]) and check if "Add S-D Markers at Mouse Hover" is set to checked for hover placement</li>
+                    <li>Ensure that the folder where you want to place the marker is selected by clicking on an item in that folder</li>
                 </ul>
+                
+                <figure>
+                    <img src="https://reaclassical.org/manual/src/assets/editing_toolbar.png" 
+                         alt="Screenshot of ReaClassical S-D editing toolbar showing marker buttons and editing controls"
+                         title="ReaClassical S-D Editing Toolbar">
+                    <figcaption>
+                        Figure 2: ReaClassical S-D Editing Toolbar - use <span class="kbd">fn+F6</span> to open
+                    </figcaption>
+                </figure>
             </li>
             <li><strong>Create your first 4-point edit:</strong>
                 <ul>
                     <li>Identify a section in your destination track that you want to replace (perhaps a section with a mistake)</li>
+                    <li>Click on the destination folder to ensure it's selected</li>
                     <li>Position your edit cursor at the beginning of this section and press <span class="kbd">1</span> to set the Destination IN point</li>
                     <li>Move your cursor to the end of this section and press <span class="kbd">2</span> to set the Destination OUT point</li>
                     <li>Now locate a better version of this same musical passage in one of your source takes</li>
@@ -578,6 +583,7 @@
                     <ul>
                         <li>Notice how the material between the source markers replaces the material between the destination markers</li>
                         <li>Observe that ReaClassical automatically creates crossfades at the edit points</li>
+                        <li>The S-D markers are automatically deleted after a successful edit</li>
                     </ul>
                     <li>Use <span class="kbd">A</span> to audition your edit and check if it sounds natural</li>
                 </ul>
@@ -606,21 +612,22 @@
                     <li>Position your edit cursor where you want to start building in the destination track</li>
                     <li>Press <span class="kbd">1</span> to set just the Destination IN marker</li>
                     <li>Find a good section in a source take, select it, and set both Source IN (<span class="kbd">3</span>) and OUT (<span class="kbd">4</span>)</li>
-                    <li>Press <span class="kbd">F3</span> to execute the assembly line edit</li>
+                    <li>Press <span class="kbd">fn+F3</span> to execute the assembly line edit</li>
                     <ul>
                         <li>Notice that the Destination IN marker automatically moves to the end of the inserted material</li>
+                        <li>The source markers are preserved, allowing you to continue with the next section</li>
                     </ul>
                     <li>Find your next good section in another source take, set Source IN and OUT again</li>
-                    <li>Press <span class="kbd">F3</span> again to add this section</li>
+                    <li>Press <span class="kbd">fn+F3</span> again to add this section</li>
                     <li>Continue building by repeating these steps</li>
                     <li>This approach allows you to quickly compile a performance from multiple takes</li>
                 </ul>
             </li>
             <li><strong>Managing S-D markers:</strong>
                 <ul>
-                    <li>If you need to move to a specific marker quickly, use <span class="kbd">Ctrl+1</span>, <span class="kbd">Ctrl+2</span>, <span class="kbd">Ctrl+3</span>, or <span class="kbd">Ctrl+4</span></li>
-                    <li>To zoom in on a marker, use <span class="kbd">Alt+1</span>, <span class="kbd">Alt+2</span>, <span class="kbd">Alt+3</span>, or <span class="kbd">Alt+4</span></li>
-                    <li>To delete all S-D markers at once (for example, before starting a new edit), press <span class="kbd">Ctrl+Del</span></li>
+                    <li>If you need to move to a specific marker quickly, use <span class="kbd">Command+1</span> [<span class="kbd">Ctrl+1</span>], <span class="kbd">Command+2</span> [<span class="kbd">Ctrl+2</span>], <span class="kbd">Command+3</span> [<span class="kbd">Ctrl+3</span>], or <span class="kbd">Command+4</span> [<span class="kbd">Ctrl+4</span>]</li>
+                    <li>To zoom in on a marker, use <span class="kbd">Option+1</span> [<span class="kbd">Alt+1</span>], <span class="kbd">Option+2</span> [<span class="kbd">Alt+2</span>], <span class="kbd">Option+3</span> [<span class="kbd">Alt+3</span>], or <span class="kbd">Option+4</span> [<span class="kbd">Alt+4</span>]</li>
+                    <li>To delete all S-D markers at once (for example, before starting a new edit), press <span class="kbd">Command+Delete</span> [<span class="kbd">Ctrl+Delete</span>]</li>
                     <li>If you decide not to make an edit after placing markers, simply delete them and start over</li>
                     <li>Note that S-D markers are automatically deleted after a successful edit (except in assembly line mode)</li>
                 </ul>
@@ -651,7 +658,17 @@
                         </ul>
                     </ul>
                     <li>The editor provides a clear view of both sides of the edit, making alignment easier</li>
+                    <li>Use the mouse wheel to zoom in and out while in this view</li>
                 </ul>
+                
+                <figure>
+                    <img src="https://reaclassical.org/manual/src/assets/xfade_window.png" 
+                         alt="Screenshot of ReaClassical crossfade editor showing two-lane view with waveforms"
+                         title="ReaClassical Crossfade Editor">
+                    <figcaption>
+                        Figure 3: ReaClassical Crossfade Editor - two-lane view for precise alignment
+                    </figcaption>
+                </figure>
             </li>
             <li><strong>Extending waveform views for alignment:</strong>
                 <ul>
@@ -676,11 +693,13 @@
                     </ul>
                     <li>Use <span class="kbd">A</span> to audition your refined crossfade:</li>
                     <ul>
-                        <li>Hover over left item and press <span class="kbd">A</span> to hear just the incoming audio</li>
-                        <li>Hover over right item and press <span class="kbd">A</span> to hear just the outgoing audio</li>
-                        <li>Hover over blank space on left side and press <span class="kbd">A</span> to audition the crossfade from cursor to mirrored point</li>
-                        <li>Hover over blank space on right side and press <span class="kbd">A</span> to audition from mirrored point to cursor</li>
+                        <li>Hover inside the crossfade window and press <span class="kbd">A</span> to audition the crossfade with mirrored pre/post roll based on mouse cursor location</li>
+                        <li>Press <span class="kbd">S</span> to audition just the left item based on cursor location or its mirrored position</li>
+                        <li>Press <span class="kbd">D</span> to audition just the right item based on cursor location or its mirrored position</li>
+                        <li>Press <span class="kbd">E</span> to audition just the top lane based on cursor location or its mirrored position</li>
+                        <li>Press <span class="kbd">C</span> to audition just the bottom lane based on cursor location or its mirrored position</li>
                     </ul>
+                    <li>Use <span class="kbd">Shift+A</span>, <span class="kbd">Shift+S</span>, or <span class="kbd">Shift+D</span> to audition at a custom playback rate (as set in preferences)</li>
                 </ul>
                 
                 <div class="pro-tip">
@@ -700,12 +719,12 @@
             </li>
             <li><strong>Adjusting crossfade length and shape:</strong>
                 <ul>
-                    <li>The default crossfade length in ReaClassical is set in preferences (<span class="kbd">fn+F5</span>)</li>
+                    <li>The default crossfade length in ReaClassical is set in preferences (<span class="kbd">Command+F5</span> [<span class="kbd">Ctrl+F5</span>])</li>
                     <li>If a specific edit needs a different crossfade length or shape, you can adjust it manually:</li>
                     <ul>
-                        <li>In the crossfade editor, find the faint crossfade curve in the overlap region</li>
-                        <li>Click and drag the edges of the crossfade to change its length</li>
-                        <li>You can also use REAPER's built-in fade editor (which appears when you select a crossfaded item)</li>
+                        <li>In the crossfade editor, hover directly over the lower portion of the crossfade</li>
+                        <li>Drag the edges of the crossfade to change its length</li>
+                        <li>Drag the shaded rectangle to move the crossfade position</li>
                         <li>Try different crossfade lengths (shorter for percussive material, longer for ambient sounds)</li>
                     </ul>
                     <li>Remember to audition each change to ensure it sounds natural</li>
@@ -719,7 +738,7 @@
         <h2>Part 4: Advanced Editing Techniques</h2>
 
         <div class="concept-box">
-            <strong>Advanced Editing in ReaClassical:</strong> Beyond basic S-D editing, ReaClassical offers several advanced editing techniques that can help with specific musical situations. These include time-stretched inserts, razor editing, and various approaches for refining and managing your edits.
+            <strong>Advanced Editing in ReaClassical:</strong> Beyond basic S-D editing, ReaClassical offers several advanced editing techniques that can help with specific musical situations. These include time-stretched inserts, the Source Audition Manager, and various approaches for refining and managing your edits.
         </div>
 
         <ol>
@@ -738,34 +757,38 @@
                     </ul>
                 </ul>
             </li>
-            <li><strong>Using razor editing:</strong>
+            <li><strong>Using the Source Audition Manager:</strong>
                 <ul>
-                    <li>Razor editing provides an alternative to S-D marker editing, especially for vertical workflow</li>
-                    <li>Click on the razor edit tool in the toolbar (or use the appropriate shortcut)</li>
-                    <li>Click and drag across tracks to create a razor selection area</li>
+                    <li>The Source Audition Manager (new in ReaClassical 26) helps you compare multiple source options before committing to an edit</li>
+                    <li>Press <span class="kbd">Z</span> to open the Source Audition Manager</li>
+                    <li>You can create audition pairs in two ways:</li>
                     <ul>
-                        <li>You can create razor areas in both destination and source material</li>
+                        <li>Using razor selection (enabled by default when the manager opens): Drag on the desired parent items to create a razor selection, then press <span class="kbd">Z</span> again to create an audition pair</li>
+                        <li>Using edit cursor placement: Check "Set Audition pairs at edit cursor" in the manager, then position the cursor and press <span class="kbd">Z</span> to place markers (alternates between SAI and SAO)</li>
                     </ul>
-                    <li>Right-click in the razor area to see editing options (cut, copy, paste, etc.)</li>
-                    <ul>
-                        <li>Try selecting a section with razor edit in a source take and copying it to the destination</li>
-                        <li>Note that razor editing also maintains child track relationships</li>
-                    </ul>
-                    <li>ReaClassical also creates crossfades automatically with razor edits</li>
+                    <li>Use the controls in the manager to audition, rank, and add notes to each source option</li>
+                    <li>Once you've decided on the best take, press the convert button to replace audition pairs with actual Source IN and OUT markers</li>
+                    <li>With destination markers already set, press <span class="kbd">5</span>, <span class="kbd">F3</span>, or <span class="kbd">F4</span> to make the edit</li>
+                    <li>You can delete individual pairs via the X button, or abandon the process by clicking "Delete All Audition Pairs..."</li>
                 </ul>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> The Source Audition Manager is particularly useful when you have multiple good takes and need to systematically compare them before committing to an edit. This approach helps you make informed decisions without repeatedly setting and deleting S-D markers.
+                </div>
             </li>
             <li><strong>Multi-project tab editing:</strong>
                 <ul>
                     <li>For complex projects, you can work with multiple project tabs and edit between them</li>
-                    <li>Open a new project tab (<span class="kbd">Ctrl+Alt+N</span>)</li>
+                    <li>Open a new project tab (<span class="kbd">Command+Option+N</span> [<span class="kbd">Ctrl+Alt+N</span>])</li>
                     <ul>
                         <li>Set up a simple project in the new tab (or import some audio)</li>
                     </ul>
                     <li>Return to your main project tab</li>
-                    <li>To set up multi-tab editing, use <span class="kbd">Ctrl+Alt+1</span> or <span class="kbd">Ctrl+Alt+2</span> to set a destination project marker</li>
-                    <li>Switch to the other tab and use <span class="kbd">Ctrl+Alt+3</span> or <span class="kbd">Ctrl+Alt+4</span> to set a source project marker</li>
+                    <li>To set up multi-tab editing, use <span class="kbd">Command+Option+1</span> [<span class="kbd">Ctrl+Alt+1</span>] or <span class="kbd">Command+Option+2</span> [<span class="kbd">Ctrl+Alt+2</span>] to set a destination project marker</li>
+                    <li>Switch to the other tab and use <span class="kbd">Command+Option+3</span> [<span class="kbd">Ctrl+Alt+3</span>] or <span class="kbd">Command+Option+4</span> [<span class="kbd">Ctrl+Alt+4</span>] to set a source project marker</li>
                     <li>Now you can use the same S-D editing techniques to move material between project tabs</li>
                     <ul><li>This is useful for compiling material from multiple recording sessions</li></ul>
+                    <li>To delete S-D project markers, press <span class="kbd">Shift+Delete</span></li>
                 </ul>
                 
                 <div class="pro-tip">
@@ -777,11 +800,20 @@
                     <li>As your edit progresses, it can be helpful to track which takes you've used</li>
                     <ul>
                         <li>Use <span class="kbd">K</span> to colorize specific items for visual tracking</li>
-                        <li>You can use SWS Notes (<span class="kbd">N</span>) to keep records of which takes contain good sections</li>
+                        <li>You can use ReaClassical Notes (<span class="kbd">N</span>) to keep records of which takes contain good sections</li>
                         <li>Create markers (<span class="kbd">M</span>) at important points in your edit</li>
                         <li>If needed, you can also add text annotations directly to items by renaming them</li>
-                        <li>Remember that the ranking system can help identify your best takes at a glance</li>
+                        <li>Remember that the ranking system from the Record Panel can help identify your best takes at a glance</li>
                     </ul>
+                    <li>To find the source material for an edited item, click on it and press <span class="kbd">Command+F</span> [<span class="kbd">Ctrl+F</span>]</li>
+                    <ul><li>Color-coordinated source markers are placed at the source location</li></ul>
+                </ul>
+            </li>
+            <li><strong>Healing edits:</strong>
+                <ul>
+                    <li>If you decide you want to undo an edit and restore the underlying material, select the edited item and press <span class="kbd">Command+H</span> [<span class="kbd">Ctrl+H</span>]</li>
+                    <li>This "heals" the edit by restoring the original material without splits</li>
+                    <li>This works at any point in the editing process and isn't restricted to the last edit made</li>
                 </ul>
             </li>
         </ol>
@@ -802,71 +834,54 @@
                     <ul>
                         <li>Listen carefully for any issues at edit points</li>
                     </ul>
-                    <li>Mark any spots that need attention (using markers or SWS notes)</li>
+                    <li>Mark any spots that need attention (using markers or ReaClassical Notes)</li>
                     <li>Return to each problem area and refine the edits as needed</li>
                     <ul>
-                        <li>Use the crossfade editor to make fine adjustments</li>
+                        <li>Use the crossfade editor (<span class="kbd">F</span>) to make fine adjustments</li>
                         <li>Consider if any edits would benefit from a different crossfade length</li>
                     </ul>
+                    <li>Use <span class="kbd">Q</span> and <span class="kbd">W</span> to navigate between item edges and check transitions</li>
                 </ul>
             </li>
             <li><strong>Adding transitions and roomtone:</strong>
                 <ul>
                     <li>For classical recordings, natural room sound is important between sections</li>
-                    <li>We can use roomtone to maintain the ambient sound of the space and disguise transitions between movements</li>
-                    <li>You can add a dedicated RoomTone track by pressing <span class="kbd">#</span> to open the special tracks dialog</li>
+                    <li>You can add a dedicated RoomTone track via Mission Control (<span class="kbd">C</span>)</li>
                     <ul>
-                        <li><strong>Mac Workaround:</strong> If the # key doesn't work on the Mac (which is a known issue), go to the main menu and select Actions → Show Action List, then search for "special tracks" and run that action by double-clicking it</li>
+                        <li>Click "Add Special Tracks", find "Room Tone", and add it</li>
                     </ul>
                     <li>Drag your main mic array roomtone recording(s) into the roomtone track</li>
                     <ul>
                         <li>This track is useful for organising the room tone material in the project, providing a dedicated location for it</li>
-                        <li>But most usefully, when you later create CD markers, ReaClassical will automatically handle roomtone crossfades</li>
+                        <li>When you later create CD markers, ReaClassical will automatically handle roomtone crossfades</li>
                     </ul>
-                </ul>
-            </li>
-            <li><strong>Preparing for mixing:</strong>
-                <ul>
-                    <li>Once your edit is complete, you can begin preliminary mixing work</li>
-                    <ul>
-                        <li>Save your project with a new name to indicate it's now in the mixing phase</li>
-                    </ul>
-                    <li>Press <span class="kbd">Ctrl+M</span> to enter ReaClassical's mastering mode</li>
-                    <ul>
-                        <li>This makes the mixer tracks visible in the arrangement view</li>
-                        <li>It also opens up the use of automation</li>
-                    </ul>
+                    <li>Once your edit is complete, save your project with a new name to indicate it's now in the mixing phase</li>
                 </ul>
             </li>
         </ol>
     </div>
 
-    <!-- Closing Remarks -->
-    <div id="closing" class="section part-section">
-        <h2>Closing Remarks</h2>
+    <!-- Summary -->
+    <div id="summary" class="section part-section">
+        <h2>Summary</h2>
 
-        <p>You've now completed an introduction to ReaClassical's editing tools and workflows. The project you've created demonstrates the core editing techniques used in classical music production. Consider keeping this edited project as a reference for future sessions. When working on new recording projects, you might find it useful to:</p>
+        <p>This exercise has introduced the fundamentals of ReaClassical's editing tools and source-destination workflows. You have learned to:</p>
 
         <ul>
-            <li>Review this exercise to remind yourself of the key S-D editing shortcuts and techniques</li>
-            <li>Compare different approaches (marker-based S-D editing vs. razor editing) to find what works best for particular situations, or which you prefer!</li>
+            <li>Prepare takes for editing using the Prepare Takes function (<span class="kbd">T</span>)</li>
+            <li>Use source-destination markers to create 2-, 3-, and 4-point edits</li>
+            <li>Navigate and manage S-D markers efficiently</li>
+            <li>Fine-tune crossfades using the Classical Crossfade Editor (<span class="kbd">F</span>)</li>
+            <li>Use advanced techniques including the Source Audition Manager and multi-tab editing</li>
+            <li>Finalise edits and prepare for the mixing phase</li>
         </ul>
 
-        <p>Remember that editing skill develops with practice. The techniques you've learned here provide a technical approach, but your ear and musical judgment remain the most important tools in creating convincing, musical edits.</p>
-
         <div class="tips">
-            <h3>Tips for editing</h3>
+            <h3>Key Points</h3>
             <ul>
-                <li>Always run <span class="kbd">T</span> (Prepare Takes) before beginning editing work</li>
-                <li>Make edits at musically logical points - phrase endings, breath points, or between distinct musical sections</li>
-                <li>Listen carefully to room ambience and ensure it remains consistent across edits</li>
-                <li>Place crossfades just before transients for the most natural sound</li>
-                <li>Use the auditioning system (<span class="kbd">A</span>) frequently to check your work</li>
-                <li>Remember the key S-D shortcuts: <span class="kbd">1</span>/<span class="kbd">2</span> for destination, <span class="kbd">3</span>/<span class="kbd">4</span> for source, <span class="kbd">5</span> to execute</li>
-                <li>For difficult edits, try <span class="kbd">F</span> to enter the crossfade editor and <span class="kbd">Z</span> to extend waveforms</li>
-                <li>Don't rely solely on visual editing - your ears should always make the final decision</li>
-                <li>Save versions of your project at key stages using different filenames to track the process</li>
-                <li>Take regular breaks to rest your ears during intensive editing sessions</li>
+                <li>S-D markers: <span class="kbd">1</span>/<span class="kbd">2</span> for destination, <span class="kbd">3</span>/<span class="kbd">4</span> for source, <span class="kbd">5</span> to execute</li>
+                <li>Press <span class="kbd">F</span> to enter crossfade editor for precise alignment</li>
+                <li>Use <span class="kbd">Q</span> and <span class="kbd">W</span> to navigate between crossfades or item edges</li>
             </ul>
         </div>
     </div>
