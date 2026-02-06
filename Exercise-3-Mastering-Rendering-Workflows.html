@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base target="_self">
-    <title>ReaClassical Exercise 3: Mastering & Rendering Workflows</title>
+    <title>ReaClassical Exercise 3: Mixing, Mastering & Rendering</title>
     <style>
         /* Base Styles */
         body {
@@ -289,16 +289,7 @@
         .toc ul li {
             margin: 8px 0;
             position: relative;
-            padding-left: 25px;
-        }
-        
-        .toc ul li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #2980b9;
-            font-weight: bold;
-            aria-hidden: true;
+            padding-left: 0;
         }
         
         .toc ul li a {
@@ -421,8 +412,8 @@
                 <img src="https://wrdtp.ac.uk/wp-content/uploads/2018/01/york.png" alt="University of York logo" style="height: 75px; width: auto;">
             </div>
             <div style="flex-grow: 1; min-width: 250px; text-align: right;">
-                <h1>ReaClassical Exercise 3: <br>Mastering & Rendering Workflows</h1>
-                <div class="tagline">v1.0 by Matt Barnard Mar 25 for ReaClassical 25</div>
+                <h1>ReaClassical Exercise 3: <br>Mixing, Mastering & Rendering</h1>
+                <div class="tagline">v2.0 by Matt Barnard Feb 26 for ReaClassical 26</div>
             </div>
         </div>
         <a href="index.html" class="back-btn header-back-btn" aria-label="Back to ReaClassical Exercise Series">
@@ -433,14 +424,14 @@
     <!-- Introduction -->
     <div class="section">
         <h2>Introduction</h2>
-        <p>This exercise builds on the project setup, recording, and editing workflows covered in the previous exercises. Once you've created a well-edited compilation of your best takes, it's time to focus on the final stages of production in ReaClassical, which combines mixing and mastering into an integrated workflow to create finished artefacts.</p>
+        <p>This exercise builds on the project setup, recording, and editing workflows covered in the previous exercises. Once you've created a well-edited compilation of your best takes, it's time to focus on the final stages of production in ReaClassical: mixing, mastering, and rendering your finished work.</p>
 
         <div class="mac-note">
-            <strong>Mac Function Key Note:</strong> On the studio Mac, you'll need to press <span class="kbd" aria-label="function key">fn</span> + the function key (e.g., <span class="kbd">fn+F8</span>) unless the keyboard settings have been changed to use function keys without the fn modifier.
+            <strong>Keyboard Shortcuts:</strong> This guide shows Mac shortcuts first with Windows equivalents in brackets. On the studio Mac, you'll need to press <span class="kbd" aria-label="function key">fn</span> + the function key (e.g., <span class="kbd">fn+F8</span>) unless the keyboard settings have been changed to use function keys without the fn modifier.
         </div>
 
         <div class="concept-box">
-            <strong>Understanding ReaClassical's Mastering Mode:</strong> In ReaClassical, the 'mastering' stage combines mixing and mastering processes into a unified workflow. This integrated approach allows you to handle all aspects of finalising your project: balancing microphone levels, applying tonal adjustments, controlling dynamics, creating track spacing and transitions, managing metadata, and rendering to various formats.
+            <strong>Understanding ReaClassical's Mixing and Mastering:</strong> In ReaClassical, mixing and mastering are integrated into a streamlined workflow. You work with mixer tracks, automation, and snapshots to balance your recording, then use the powerful CD marker creation tools to prepare your project for distribution. This integrated approach allows you to handle all aspects of finalising your project efficiently.
         </div>
     </div>
 
@@ -448,21 +439,20 @@
     <div class="toc">
         <h2>Contents</h2>
         <ul>
-            <li><a href="#part1">Part 1: Entering Mastering Mode</a></li>
-            <li><a href="#part2">Part 2: Mixing and Tonal Balance</a></li>
-            <li><a href="#part3">Part 3: Track Spacing and CD Marker Creation</a></li>
-            <li><a href="#part4">Part 4: Rendering and Exporting</a></li>
-            <li><a href="#part5">Part 5: Project Management and Archiving</a></li>
-            <li><a href="#closing">Closing Remarks</a></li>
+            <li><a href="#part1">Part 1: Mixing with Automation and Snapshots</a></li>
+            <li><a href="#part2">Part 2: Track Spacing and CD Marker Creation</a></li>
+            <li><a href="#part3">Part 3: Rendering and Exporting</a></li>
+            <li><a href="#part4">Part 4: Project Management and Archiving</a></li>
+            <li><a href="#summary">Summary</a></li>
         </ul>
     </div>
 
     <!-- Part 1 -->
     <div id="part1" class="section part-section">
-        <h2>Part 1: Entering Mastering Mode</h2>
+        <h2>Part 1: Mixing with Automation and Snapshots</h2>
 
         <div class="concept-box">
-            <strong>Mastering Mode:</strong> ReaClassical's mastering mode transforms the project view to focus on finalising your recording. It makes mixer tracks visible in the arrange window, provides access to automation lanes, and hides source material to declutter your workspace. This allows you to concentrate on balancing all microphone channels, applying processing, and preparing for output formats without the distraction of unused source material.
+            <strong>Mixing in ReaClassical:</strong> Classical music mixing typically focuses on natural tonal balance, proper spatial positioning, and transparent dynamics processing. ReaClassical provides two powerful approaches: traditional automation for gradual changes over time, and the Mixer Snapshot Manager for quickly recalling different mixer states at specific points in your project. Together, these tools allow you to create a polished, natural-sounding mix.
         </div>
 
         <ol>
@@ -473,36 +463,108 @@
                     <li>If you're using a vertical workflow, verify that all edits in the destination folder are complete before proceeding</li>
                 </ul>
             </li>
-            <li><strong>Enter mastering mode:</strong>
+            <li><strong>Understanding mixer tracks:</strong>
                 <ul>
-                    <li>Press <span class="kbd">Command+M</span> to switch to mastering mode</li>
+                    <li>Note that all audio flows through the mixer tracks (labelled with "M:" prefix) to the RCMASTER bus</li>
+                    <li>Open Mission Control (<span class="kbd">C</span>) to view and manage your mixer tracks</li>
+                    <li>Mixer tracks are where you adjust volume, panning, add effects, and control routing</li>
+                    <li>Any changes made to mixer tracks affect all instances of those microphone channels throughout your project</li>
+                    <li>By default, mixer tracks are only visible in the mixer panel, but you can make them visible in the arrange window via Mission Control if needed</li>
+                </ul>
+            </li>
+            <li><strong>Using the Mixer Snapshot Manager:</strong>
+                <ul>
+                    <li>Press <span class="kbd">Shift+M</span> to open the Mixer Snapshot Manager</li>
+                    <li>This tool allows you to create automatically-recalled mixer settings tied to specific items in your project</li>
+                    <li>Click on an item in the destination folder that represents the start of a new section (e.g., the beginning of a different movement)</li>
+                    <li>Adjust your mixer settings - faders, pan, effects parameters, mute/solo - to suit this section</li>
+                    <li>Click "Set Snapshot..." in the Mixer Snapshot Manager window</li>
                     <ul>
-                        <li>Notice how the mixer tracks (labelled with "M:" prefix) now appear in the arrange window</li>
-                        <li>Source folders are hidden to declutter the workspace</li>
-                        <li>The destination folder remains visible with your edited material</li>
+                        <li>Notice how the snapshot is now listed in the table, tied to that specific item</li>
                     </ul>
-                    <li>Take a moment to examine the new view - this is your mastering workspace</li>
+                    <li>Move to another section that needs different mixer settings and repeat the process</li>
+                    <li>During playback, with the window still open, the mixer will automatically recall the appropriate snapshot as each section plays</li>
                 </ul>
                 
+                <figure>
+                    <img src="https://reaclassical.org/manual/src/assets/mixer_snapshots.png" 
+                         alt="Screenshot of ReaClassical Mixer Snapshot Manager showing table of snapshots"
+                         title="ReaClassical Mixer Snapshot Manager">
+                    <figcaption>
+                        Figure 1: ReaClassical Mixer Snapshot Manager - create auto-recalled mixer scenes
+                    </figcaption>
+                </figure>
+                
                 <div class="pro-tip">
-                    <strong>Tip:</strong> Mastering mode allows you to focus on the final sound without the distraction of source materials. All your mixer tracks are now visible in both the arrange window and mixer panel, giving you quick access to all important controls.
+                    <strong>Tip:</strong> For classical music, mixer snapshots are ideal for handling different movements or sections that have distinctly different balances - for example, a quiet solo passage followed by a full orchestral tutti. The automatic recall during playback makes it easy to verify that transitions sound natural.
                 </div>
             </li>
-            <li><strong>Explore track relationships in mastering mode:</strong>
+            <li><strong>Converting snapshots to automation:</strong>
                 <ul>
-                    <li>Note that all audio still flows through the mixer tracks to the RCMASTER bus</li>
-                    <li>Any changes made to mixer tracks affect all instances of those microphone channels</li>
-                    <li>Select the destination folder and press <span class="kbd">D</span> to display its child tracks if they're hidden</li>
+                    <li>Mixer snapshots rely on real-time playback for auto-recall</li>
+                    <li>Before rendering (especially faster-than-realtime rendering), you should convert snapshots to permanent automation</li>
+                    <li>In the Mixer Snapshot Manager window, click "Convert to Automation"</li>
+                    <ul>
+                        <li>Choose which folder to use for gap detection (this controls when the mixer transitions occur)</li>
+                        <li>Decide whether to allow mid-gap switching</li>
+                    </ul>
+                    <li>Notice how mixer tracks now appear in the arrange window with visible automation lanes</li>
+                    <li>These automation points can be manually adjusted if needed using the pencil tool or by dragging points</li>
+                    <li>If you later move items around, simply click "Convert to Automation" again to update the automation data</li>
+                    <li>To return to snapshot mode for further editing, click "Clear Automation"</li>
                 </ul>
             </li>
-            <li><strong>Prepare for automation:</strong>
+            <li><strong>Using volume automation on tracks:</strong>
                 <ul>
-                    <li>Press <span class="kbd">Command+I</span> to enter automation mode</li>
+                    <li>For more detailed control beyond mixer snapshots, you can add automation directly to destination or source folder tracks</li>
+                    <li>Select a track in the destination or source folder</li>
+                    <li>Position your edit cursor where you want the automation to begin, or create a time selection for a specific region</li>
+                    <li>Press <span class="kbd">I</span> to open the automation dialogue</li>
                     <ul>
-                        <li>Notice that all envelope buttons turn blue ('latched preview' mode)</li>
-                        <li>A message box appears with instructions for using automation</li>
+                        <li>In edit cursor mode, the automation affects from that point forward to the end of the project</li>
+                        <li>In time selection mode, the automation is limited to the selected region</li>
                     </ul>
-                    <li>This mode allows you to create static mixer scenes across your project, which is useful for different sections that may need different mix settings</li>
+                    <li>Set your desired volume level and optional ramp in/out lengths</li>
+                    <li>Click "Apply Automation"</li>
+                    <li>Use this approach for bringing up spot microphones during solo passages, or reducing levels during louder tutti sections</li>
+                </ul>
+                
+                <figure>
+                    <img src="https://reaclassical.org/manual/src/assets/automation.png" 
+                         alt="Screenshot of ReaClassical automation dialogue"
+                         title="ReaClassical Automation Dialogue">
+                    <figcaption>
+                        Figure 2: ReaClassical Automation Dialogue - set volume and ramp times
+                    </figcaption>
+                </figure>
+            </li>
+            <li><strong>Working with advanced automation:</strong>
+                <ul>
+                    <li>If you need to automate additional parameters beyond volume (such as FX parameters), enable "Advanced Mode" in the automation dialogue</li>
+                    <li>This gives you access to all available envelopes for the selected track</li>
+                    <li>To automate mixer tracks or special tracks, first make them visible in the arrange window:</li>
+                    <ul>
+                        <li>Open Mission Control (<span class="kbd">C</span>)</li>
+                        <li>Check the box on the desired track row to make it visible</li>
+                        <li>You can now select it and use <span class="kbd">I</span> to add automation</li>
+                    </ul>
+                </ul>
+            </li>
+            <li><strong>Adding effects and processing:</strong>
+                <ul>
+                    <li>Open Mission Control (<span class="kbd">C</span>) to add effects to mixer tracks</li>
+                    <li>For classical music, consider adding:</li>
+                    <ul>
+                        <li>Subtle EQ for tonal balance (RCChannelEQ or RCMasteringEQ)</li>
+                        <li>Light compression if needed (RCCompressor with conservative settings)</li>
+                        <li>Reverb on a dedicated aux track for added ambience</li>
+                    </ul>
+                    <li>For mastering-grade processing on the final output, add effects to the RCMASTER track:</li>
+                    <ul>
+                        <li>EQ for final tonal adjustments</li>
+                        <li>Light limiting (RCLimiter) to control peaks while maintaining dynamics</li>
+                    </ul>
+                    <li>Remember: less is more in classical music - aim for transparency rather than obvious processing</li>
                 </ul>
             </li>
         </ol>
@@ -510,57 +572,125 @@
 
     <!-- Part 2 -->
     <div id="part2" class="section part-section">
-        <h2>Part 2: Mixing and Tonal Balance</h2>
+        <h2>Part 2: Track Spacing and CD Marker Creation</h2>
 
         <div class="concept-box">
-            <strong>Mixing Principles for Classical Music:</strong> Classical music mixing typically focuses on natural tonal balance, proper spatial positioning, and transparent dynamics processing. Unlike popular music, the goal is usually to present an authentic representation of the performance rather than to create a heavily processed sound. In ReaClassical, mixing is integrated into the mastering mode, allowing you to make adjustments to individual microphone channels, create submixes, and apply processing all within the same workflow, while maintaining the integrity of the performance.
+            <strong>CD Markers and Metadata:</strong> For classical albums with multiple movements or pieces, proper track spacing and metadata are crucial. ReaClassical's metadata editor automates the creation of CD markers, regions, and even room tone automation, making album preparation remarkably efficient. This single function handles everything needed for professional CD manufacturing, digital distribution, and archiving.
         </div>
 
         <ol>
-            <li><strong>Setting static mix scenes with automation:</strong>
+            <li><strong>Preparing items for CD track creation:</strong>
                 <ul>
-                    <li>With automation mode active (<span class="kbd">Command+I</span>), position your edit cursor at the start of your project</li>
-                    <li>Adjust volume faders, pan positions, and any other mixer settings to create your initial balance</li>
-                    <li>Press <span class="kbd">I</span> to insert these settings as automation points at the edit cursor position</li>
+                    <li>Identify which items in your destination folder should become CD track starts</li>
+                    <li>For each track start, select the item and press <span class="kbd">Command+F2</span> [<span class="kbd">F2</span>] to rename it</li>
+                    <li>Enter the track name (e.g., "I. Allegro", "II. Adagio", "III. Scherzo")</li>
                     <ul>
-                        <li>Notice how envelope points are created for each adjusted parameter</li>
-                        <li>These envelope points represent a "snapshot" of your mixer settings</li>
+                        <li>If you want a visual CD player countdown into a track, start the name with an exclamation mark (e.g., "!III. Scherzo")</li>
+                        <li>The countdown length is set in ReaClassical Preferences (<span class="kbd">Command+F5</span> [<span class="kbd">Ctrl+F5</span>])</li>
                     </ul>
-                    <li>If your project has distinct sections that need different balances (such as a quiet passage followed by a tutti section), position the edit cursor at the transition point</li>
-                    <li>Adjust mixer settings for the new section and press <span class="kbd">I</span> again to create another set of envelope points</li>
-                    <li>When finished setting automation points, press <span class="kbd">Command+I</span> again to exit automation mode</li>
-                    <ul>
-                        <li>The envelope buttons will turn green ('read' mode)</li>
-                    </ul>
+                    <li>Leave all other items unnamed - ReaClassical will recognise these as continuations of the previous track</li>
+                    <li>Alternatively, you can use the ReaClassical Notes window (<span class="kbd">N</span>) to name items</li>
                 </ul>
                 
                 <div class="pro-tip">
-                    <strong>Tip:</strong> For classical music, subtle automation changes between sections often create the most natural sound. It's better to make small, gradual adjustments than dramatic shifts in the mix.
+                    <strong>Tip:</strong> For an "Easter egg" hidden track in the CD pre-gap (before track 1), simply don't name the first item. This creates audio that's accessible on some CD players but doesn't appear in the track listing.
                 </div>
             </li>
-            <li><strong>Working with automation lanes:</strong>
+            <li><strong>Adjusting track spacing:</strong>
                 <ul>
-                    <li>Use the pencil tool or click-and-drag to create or adjust automation points</li>
-                    <li>To temporarily bring up a spot microphone during a solo passage:</li>
+                    <li>Before creating CD markers, ensure your tracks have appropriate spacing</li>
+                    <li>To set uniform gaps between all tracks:</li>
                     <ul>
-                        <li>Create a time selection around the solo passage</li>
-                        <li>Create points at the beginning and end of the selection</li>
-                        <li>Shift-Drag the middle section upward to create a temporary volume increase, adjust nodes to add smooth transitions</li>
+                        <li>Press <span class="kbd">Command+Y</span> [<span class="kbd">Ctrl+Y</span>] and enter a desired gap length in seconds (typically 2-5 seconds)</li>
+                        <li>All items will be automatically repositioned with your specified spacing</li>
                     </ul>
-                    <li>To hide automation lanes, select a track(s) and press <span class="kbd">E</span></li>
-                    <li>To show all lanes again, press <span class="kbd">D</span></li>
+                    <li>To reposition individual tracks:</li>
+                    <ul>
+                        <li>Select the item that starts the track you want to move</li>
+                        <li>Use <span class="kbd">Command+←</span> [<span class="kbd">Ctrl+←</span>] or <span class="kbd">Command+→</span> [<span class="kbd">Ctrl+→</span>] to shift it left or right</li>
+                        <li>Gaps and crossfades are preserved during this operation</li>
+                    </ul>
+                    <li>For attacca movements (that should flow directly together), maintain the musical connection with crossfades rather than silence</li>
                 </ul>
             </li>
-            <li><strong>Item-level volume envelopes for peak control:</strong>
+            <li><strong>Clearing existing item names (if needed):</strong>
                 <ul>
-                    <li>For more detailed control over specific passages, you can work with volume envelopes on individual items</li>
-                    <li>Select the audio item in the destination folder (child track, not the parent folder)</li>
-                    <li>Press <span class="kbd">V</span> to add a volume envelope to the item</li>
+                    <li>If you've been working in a horizontal workflow and have item names from previous work, you may want to clear them all first</li>
+                    <li>Press <span class="kbd">Command+T</span> [<span class="kbd">Ctrl+T</span>] to remove all names from items on the destination parent track</li>
+                    <li>Then name only the items that should be track starts as described above</li>
+                </ul>
+            </li>
+            <li><strong>Adding room tone (optional but recommended):</strong>
+                <ul>
+                    <li>For professional classical recordings, room tone creates natural transitions between tracks and avoids complete digital silence</li>
+                    <li>Open Mission Control (<span class="kbd">C</span>)</li>
+                    <li>Click "Add Special Tracks" and select "Room Tone"</li>
+                    <li>Drag your recorded room tone (ambient sound from the venue) into the room tone track</li>
                     <ul>
-                        <li>Notice the volume line that appears on the audio item</li>
+                        <li>Alternatively, you can generate synthetic room tone using the template in the ReaClassical manual</li>
                     </ul>
-                    <li>Click on the line to add points, then drag them to adjust volume at specific moments</li>
-                    <li>Use this approach for correcting short peaks or issues that don't require track-level automation</li>
+                    <li>Place the room tone across the entire album timeline</li>
+                    <li>When you create CD markers (next step), ReaClassical will automatically generate volume automation for seamless crossfades between music and room tone</li>
+                </ul>
+            </li>
+            <li><strong>Creating CD markers and metadata:</strong>
+                <ul>
+                    <li>Press <span class="kbd">Y</span> to open the Metadata Editor</li>
+                    <li>The window displays all your named items as CD tracks</li>
+                    <li>Enter album-wide metadata:</li>
+                    <ul>
+                        <li>UPC/EAN code (if available from your label or distributor)</li>
+                        <li>ISRC number pattern (if available) - ReaClassical can auto-increment for subsequent tracks</li>
+                        <li>Album title</li>
+                        <li>Performer name</li>
+                        <li>Composer name</li>
+                        <li>Genre (typically "Classical")</li>
+                        <li>Year of production</li>
+                    </ul>
+                    <li>You can also enter track-specific metadata by filling in the table rows</li>
+                    <li>Click "Apply" or press <span class="kbd">Command+Return</span> [<span class="kbd">Ctrl+Enter</span>] to create the CD markers</li>
+                </ul>
+                
+                <figure>
+                    <img src="https://reaclassical.org/manual/src/assets/metadata_editor.png" 
+                         alt="Screenshot of ReaClassical Metadata Editor showing track list and metadata fields"
+                         title="ReaClassical Metadata Editor">
+                    <figcaption>
+                        Figure 3: ReaClassical Metadata Editor - enter all album information in one place
+                    </figcaption>
+                </figure>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> The metadata editor automatically creates: CD markers at each track start (with proper 2-second pre-gap before track 1), regions defining each track, room tone automation (if you added a room tone track), and a complete metadata file. If you later adjust track positions, simply press <span class="kbd">Y</span> again to update everything instantly.
+                </div>
+            </li>
+            <li><strong>Reviewing the created markers and automation:</strong>
+                <ul>
+                    <li>After clicking "Apply", check the timeline ruler to see your CD markers</li>
+                    <li>Notice the 2-second pre-gap before the first track (required by CD standard)</li>
+                    <li>If you used exclamation marks, you'll see additional countdown markers</li>
+                    <li>If you added room tone, check that volume automation has been created:</li>
+                    <ul>
+                        <li>The room tone fades out as music begins and fades in during gaps</li>
+                        <li>These crossfades are perfectly aligned to create seamless transitions</li>
+                    </ul>
+                    <li>Regions have been created defining each track's extent</li>
+                </ul>
+            </li>
+            <li><strong>Advanced metadata features:</strong>
+                <ul>
+                    <li>For digital-only releases (no physical CD), check "Digital Release Only" in the metadata editor</li>
+                    <ul>
+                        <li>This ignores CD frame alignment and offset requirements</li>
+                        <li>Markers can be placed with sample-accurate precision</li>
+                    </ul>
+                    <li>To manually adjust marker positions (for example, to avoid a cough before a downbeat):</li>
+                    <ul>
+                        <li>Drag the CD marker to the desired position</li>
+                        <li>Click "Add Marker Offsets" in the metadata editor</li>
+                        <li>The offset is now stored with the item and will be maintained if you reposition items</li>
+                    </ul>
+                    <li>To remove all manual offsets, click "Remove All Marker Offsets"</li>
                 </ul>
             </li>
         </ol>
@@ -568,292 +698,271 @@
 
     <!-- Part 3 -->
     <div id="part3" class="section part-section">
-        <h2>Part 3: Track Spacing and CD Marker Creation</h2>
+        <h2>Part 3: Rendering and Exporting</h2>
 
         <div class="concept-box">
-            <strong>Track Spacing and Markers:</strong> For classical albums with multiple movements or pieces, proper spacing between tracks is crucial for the listening experience. ReaClassical provides tools to easily adjust track spacing and automatically generate CD markers that respect CD standards. This allows for effortless creation of DDP filesets, CUE files, and individual track exports.
-        </div>
-
-        <ol>
-            <li><strong>Preparing for track markers:</strong>
-                <ul>
-                    <li>If your project contains multiple movements or pieces that should be separate tracks:</li>
-                    <ul>
-                        <li>Ensure each track start has a distinct item (or crossfaded items) in the destination folder</li>
-                        <li>Position these items with appropriate spacing between tracks</li>
-                        <li>For attached movements (attacca), maintain the musical connection with crossfades</li>
-                        <li>For separate movements, create natural-sounding gaps (typically 2-5 seconds)</li>
-                    </ul>
-                    <li>If working with a previously horizontal workflow, press <span class="kbd">Command+T</span> to remove any unwanted item names</li>
-                </ul>
-            </li>
-            <li><strong>Repositioning tracks and adjusting spacing:</strong>
-                <ul>
-                    <li>To adjust the spacing between all tracks uniformly:</li>
-                    <ul>
-                        <li>Press <span class="kbd">Command+Y</span> and enter a desired gap length in seconds</li>
-                        <li>Notice how all items are spaced according to your specified value</li>
-                    </ul>
-                    <li>To change the position of a specific track:</li>
-                    <ul>
-                        <li>Select the item that starts the track</li>
-                        <li>Use <span class="kbd">Command+←</span> or <span class="kbd">Command+→</span> to shift the track left or right</li>
-                        <li>Note that gaps and crossfades are preserved during this operation</li>
-                    </ul>
-                    <li>This allows you to easily change the track order if needed</li>
-                </ul>
-            </li>
-            <li><strong>Adding room tone (if needed):</strong>
-                <ul>
-                    <li>Press <span class="kbd">#</span> and select "RoomTone" to add a dedicated room tone track</li>
-                    <ul><li><strong>Mac Workaround:</strong> If the # key doesn't work on the Mac (which is a known issue), go to the main menu and select Actions → Show Action List, then search for "special tracks" and run that action by double-clicking it</li></ul>
-                    <li>Import clean room tone recorded from your session or generate synthetic room tone</li>
-                    <li>Place this audio across the entire project timeline</li>
-                    <li>When you create CD markers (next step), volume automation will be automatically generated for seamless transitions between music and silence</li>
-                </ul>
-                
-                <div class="pro-tip">
-                    <strong>Tip:</strong> Room tone creates a more natural listening experience by avoiding complete digital silence between tracks. For classical recordings, this helps maintain the illusion of a continuous performance space.
-                </div>
-            </li>
-            <li><strong>Naming tracks and adding metadata:</strong>
-                <ul>
-                    <li>For each item that should become a CD track start, select it and press <span class="kbd">F2</span></li>
-                    <li>Enter the track name (e.g., "I. Allegro", "II. Adagio", etc.)</li>
-                    <ul>
-                        <li>If you want a visual CD player countdown into a track, start the name with an exclamation mark (e.g., "!III. Scherzo")</li>
-                        <li>Do not name items that are not track starts (the system will recognise these as part of the previous track)</li>
-                    </ul>
-                    <li>For an Easter egg track (hidden audio in the pre-gap), simply don't name the first item</li>
-                </ul>
-            </li>
-            <li><strong>Creating CD markers automatically:</strong>
-                <ul>
-                    <li>Press <span class="kbd">Y</span> to run the Create CD Markers function</li>
-                    <li>Enter album metadata when prompted:</li>
-                    <ul>
-                        <li>UPC/EAN code (if available)</li>
-                        <li>ISRC number pattern (if available)</li>
-                        <li>Album title</li>
-                        <li>Performer name</li>
-                        <li>Composer name</li>
-                        <li>Genre (typically "Classical")</li>
-                    </ul>
-                    <li>Review the markers and regions that are automatically created:</li>
-                    <ul>
-                        <li>Notice how markers are placed at the start of each named item</li>
-                        <li>Observe the 2-second pre-gap before the first track</li>
-                        <li>See the CD player countdown markers (if you used "!" prefixes)</li>
-                        <li>Check the room tone automation that's been generated (if you added a room tone track)</li>
-                    </ul>
-                </ul>
-                
-                <div class="pro-tip">
-                    <strong>Tip:</strong> The Create CD Markers function automates the creation of aligned markers, regions, and room tone automation in one step. If you later adjust spacing between tracks, simply run the function again to update everything.
-                </div>
-            </li>
-        </ol>
-    </div>
-
-    <!-- Part 4 -->
-    <div id="part4" class="section part-section">
-        <h2>Part 4: Rendering and Exporting</h2>
-
-        <div class="concept-box">
-            <strong>Rendering Options:</strong> ReaClassical provides several pre-configured rendering options designed specifically for classical music distribution. These include high-resolution stereo files, DDP filesets for CD manufacturing, and various consumer formats. Understanding these options ensures you can deliver your project in any required format.
+            <strong>Rendering Options:</strong> For your module assessment, you'll be creating a 48 kHz / 24-bit WAV file of your final edited recording (typically a single work of 7-12 minutes). However, this section provides an overview of the various rendering workflows available in ReaClassical, including tools designed for multi-track albums and CD manufacturing. Understanding these options will be valuable for future professional work.
         </div>
 
         <ol>
             <li><strong>Setting appropriate loudness levels:</strong>
+                
+                <div class="pro-tip">
+                    <strong>Important Guidance on Loudness Targets:</strong>
+                    
+                    <p>For classical music, integrated LUFS measurements typically range between -23 and -18 LUFS, though this varies considerably depending on repertoire and recording style. These values are indicative only - actual targets should be determined by analysing comparable professional recordings in the same genre.</p>
+                    
+                    <p>Chamber music might be quieter (around -23 LUFS), full orchestral works might be louder (around -18 LUFS), and solo piano or vocal works vary widely. Always reference well-regarded commercial recordings of similar repertoire to understand the loudness range and dynamic characteristics appropriate for your project.</p>
+                </div>
+                
                 <ul>
-                    <li>For classical music, aim for an integrated LUFS measurement between -23 to -18 LUFS</li>
+                    <li>Find well-regarded commercial recordings of similar repertoire and analyse their loudness using a meter:</li>
+                    <ul>
+                        <li>Listen to professional recordings in the same genre</li>
+                        <li>Note the loudness range and dynamic characteristics of your references</li>
+                        <li>Use these as a benchmark for determining your own appropriate loudness targets</li>
+                    </ul>
                     <li>Use REAPER's built-in JS Loudness Meter to check your levels:</li>
                     <ul>
-                        <li>Right-click on the FX button of the Master track and add "JS: Loudness Meter"</li>
-                        <li>Play through the loudest sections of your project</li>
-                        <li>Note the integrated LUFS measurement</li>
+                        <li>Right-click on the FX button of the Master track</li>
+                        <li>Add "JS: Loudness Meter Peak/RMS/LUFS"</li>
+                        <li>Play through your entire project from start to finish</li>
+                        <li>Note the integrated LUFS measurement at the end</li>
                     </ul>
-                    <li>Adjust the RCMASTER track volume as needed to achieve the target loudness</li>
-                    <li>Ensure peaks remain below -1dBTP (true peak) to avoid potential clipping during conversion</li>
+                    <li>Once you're happy with the internal balance of your mix (the relative levels between different microphones), you can use the RCMASTER track fader as a gain staging device to achieve your target loudness</li>
+                    <li>For taming aggressively loud sections, consider using slow-reacting compression with gentle settings rather than heavy limiting</li>
+                    <li>Ensure peaks remain below -1dBTP (true peak) to avoid potential clipping during format conversion</li>
+                    <li>If using a limiter on the Master track, best practice is to avoid producing any gain reduction with it - it should act only as a safety ceiling</li>
                 </ul>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> REAPER's render dialogue includes a powerful feature for automatically normalising to target loudness and true peak values. This can save significant time when you need to meet specific delivery requirements for streaming platforms.
+                </div>
             </li>
-            <li><strong>Using render presets:</strong>
+            <li><strong>Using ReaClassical render presets:</strong>
                 <ul>
                     <li>Press <span class="kbd">R</span> to open the render dialogue</li>
-                    <li>Click on the "Presets" button, then "All Settings"</li>
-                    <li>ReaClassical includes several useful rendering presets:</li>
+                    <li>Click on "Presets", then "All Settings" to see ReaClassical presets</li>
+                    <li>Available presets include:</li>
                     <ul>
                         <li>"ReaClassical - Album (16-bit WAV)" for CD-quality full album export</li>
                         <li>"ReaClassical - Album (24-bit WAV)" for high-resolution full album export</li>
                         <li>"ReaClassical - Album (FLAC)" for compressed lossless full album export</li>
                         <li>"ReaClassical - Individual Tracks (16-bit WAV)" for CD-quality separate track export</li>
                         <li>"ReaClassical - Individual Tracks (24-bit WAV)" for high-resolution separate track export</li>
+                        <li>"ReaClassical - DDP" for professional CD manufacturing</li>
                     </ul>
-                    <li>Select the appropriate preset for your current needs</li>
+                    <li>Select the appropriate preset for your needs</li>
+                    <li>The presets include proper dither settings for bit depth reduction</li>
+                    <li><strong>For your module assessment:</strong> Use "ReaClassical - Album (24-bit WAV)" preset (despite the name, this works for single pieces too) to create your 48 kHz / 24-bit WAV submission. Ensure your project sample rate is set to 48 kHz in project settings (<span class="kbd">P</span>)</li>
                 </ul>
+                
+                <figure>
+                    <img src="https://reaclassical.org/manual/src/assets/render.png" 
+                         alt="Screenshot of REAPER render dialogue with ReaClassical presets"
+                         title="REAPER Render Dialogue">
+                    <figcaption>
+                        Figure 4: REAPER Render Dialogue - access ReaClassical presets via "All Settings"
+                    </figcaption>
+                </figure>
             </li>
-            <li><strong>DDP fileset creation:</strong>
+            <li><strong>DDP fileset creation (professional workflow - optional):</strong>
                 <ul>
-                    <li>To create a DDP fileset for professional CD manufacturing:</li>
+                    <li>DDP (Disc Description Protocol) is the industry standard for professional CD manufacturing</li>
+                    <li><strong>Note:</strong> DDP creation is designed for multi-track albums. For your module assessment (typically a single work), you won't need this workflow, but understanding it is valuable for future album projects</li>
+                    <li>To create a DDP fileset:</li>
                     <ul>
                         <li>Select the "ReaClassical - DDP" preset in the render dialogue</li>
                         <li>Choose a destination folder</li>
-                        <li>Click "Render" to create the DDP fileset</li>
-                        <li>The fileset will include all necessary files for CD replication, including your metadata</li>
+                        <li>Click "Render" to create the complete DDP fileset</li>
                     </ul>
-                    <li>This is the preferred method for delivering to professional CD manufacturing plants</li>
+                    <li>The fileset includes all necessary files for CD replication:</li>
+                    <ul>
+                        <li>Audio data with proper CD framing</li>
+                        <li>All track markers and CD-TEXT information</li>
+                        <li>ISRC codes and other metadata</li>
+                        <li>UPC/EAN barcode information</li>
+                    </ul>
+                    <li>Most professional CD manufacturing plants prefer DDP over CD-R masters</li>
+                    <li>DDP files can be verified before sending to ensure accuracy</li>
                 </ul>
-                
-                <div class="pro-tip">
-                    <strong>Tip:</strong> DDP filesets are the industry standard for CD manufacturing. They contain all the necessary information for creating a CD, including audio, track markers, ISRC codes, and other metadata. Using DDP ensures that your CD will be manufactured exactly as intended.
-                </div>
+            </li>
+            <li><strong>Dry-run rendering for verification:</strong>
+                <ul>
+                    <li>Before committing to a full render, you can use REAPER's dry-run feature</li>
+                    <li>In the render dialogue, click "Dry run"</li>
+                    <li>This quickly analyses your project without creating files:</li>
+                    <ul>
+                        <li>Provides integrated LUFS values</li>
+                        <li>Shows true peak measurements</li>
+                        <li>Reveals if any clipping will occur</li>
+                    </ul>
+                    <li>Use this to verify loudness before rendering</li>
+                    <li>Make any necessary adjustments to the RCMASTER fader (for overall gain staging) or limiting</li>
+                    <li>Run another dry-run to confirm the results</li>
+                    <li>This is much faster than rendering and re-rendering full files</li>
+                </ul>
+            </li>
+            <li><strong>Individual track export (for reference):</strong>
+                <ul>
+                    <li>This workflow is used when you have multiple separate tracks on an album that need to be exported as individual files</li>
+                    <li><strong>Note:</strong> Your module assessment typically involves a single work rendered as one continuous file - this section is included for completeness and future reference</li>
+                    <li>Select the "ReaClassical - Individual Tracks (24-bit WAV)" preset</li>
+                    <li>Verify that "Regions" is selected in the "Bounds" dropdown</li>
+                    <ul><li>This ensures each region created by the metadata editor becomes a separate file</li></ul>
+                    <li>Choose your destination folder</li>
+                    <li>Click "Render" to create individual files for each track</li>
+                    <li>Files will be automatically named based on your track titles from the metadata editor</li>
+                    <li>These files are also useful for providing preview tracks to clients or for streaming services</li>
+                </ul>
+            </li>
+            <li><strong>Dither for bit depth reduction:</strong>
+                <ul>
+                    <li>When rendering to 16-bit (CD quality) from a 24-bit project, dither is essential</li>
+                    <li>Dither prevents quantisation distortion when reducing bit depth</li>
+                    <li>ReaClassical presets include appropriate REAPER dither settings by default</li>
+                    <li>Alternatively, you can use RCDither:</li>
+                    <ul>
+                        <li>Add RCDither as the final plugin on the master bus</li>
+                        <li>Select "16-bit" from the dropdown</li>
+                        <li>Disable REAPER's built-in dither in the render dialogue to avoid double-dithering</li>
+                    </ul>
+                    <li>Note: RCDither uses the "Not Just Another Dither" algorithm, which is considered one of the finest available</li>
+                </ul>
             </li>
             <li><strong>Creating CUE files and album reports:</strong>
                 <ul>
-                    <li>Press <span class="kbd">C</span> to generate a CUE file and album reports</li>
-                    <li>Verify or adjust the information that appears in the dialogue:</li>
+                    <li>After rendering your album, check your project folder for automatically-generated files:</li>
                     <ul>
-                        <li>File extension (WAV, FLAC, etc.)</li>
-                        <li>Album title</li>
-                        <li>Performer</li>
-                        <li>Composer</li>
-                        <li>Genre</li>
-                        <li>Year</li>
+                        <li>A CUE file for use with your rendered audio file</li>
+                        <li>An HTML album report with formatted track listings and metadata</li>
+                        <li>A plaintext album report with the same information</li>
+                        <li>A complete technical metadata file (useful for sending to manufacturers)</li>
                     </ul>
-                    <li>Click "OK" to generate the files</li>
-                    <li>This creates three useful files in your project folder:</li>
+                    <li>These files are created when you press <span class="kbd">Y</span> to open the metadata editor</li>
+                    <li>They update automatically each time you make changes and apply them</li>
+                    <li>The album reports are valuable for:</li>
                     <ul>
-                        <li>A CUE file that can be used with the full album audio file</li>
-                        <li>A plaintext album report with track timings and metadata</li>
-                        <li>An HTML album report with the same information in a formatted display</li>
+                        <li>Providing timing information to clients and labels</li>
+                        <li>Including in liner notes or documentation</li>
+                        <li>Archiving session details</li>
                     </ul>
-                    <li>The album reports are valuable for providing timing and metadata information to clients, labels, or CD manufacturers</li>
-                </ul>
-            </li>
-            <li><strong>Individual track export:</strong>
-                <ul>
-                    <li>To export individual audio files for each track:</li>
-                    <ul>
-                        <li>Select the "ReaClassical - Individual Tracks (24-bit WAV)" preset</li>
-                        <li>Verify that "Regions" is selected in the "Render" dropdown</li>
-                        <li>Choose your destination folder</li>
-                        <li>Click "Render" to create individual files for each track</li>
-                    </ul>
-                    <li>These files are useful for digital distribution platforms, streaming services, and providing preview files to clients</li>
-                </ul>
-            </li>
-            <li><strong>Using dither for bit depth reduction:</strong>
-                <ul>
-                    <li>When rendering to 16-bit (CD quality) from a higher bit depth project:</li>
-                    <ul>
-                        <li>Ensure dither is applied to avoid quantisation distortion</li>
-                        <li>ReaClassical render presets include appropriate dither settings</li>
-                        <li>Alternatively, add RCDither as the final plugin on the master bus before rendering</li>
-                    </ul>
-                    <li>When using RCDither, select "16-bit" from the dropdown and disable REAPER's built-in dither</li>
                 </ul>
             </li>
         </ol>
     </div>
 
-    <!-- Part 5 -->
-    <div id="part5" class="section part-section">
-        <h2>Part 5: Project Management and Archiving</h2>
+    <!-- Part 4 -->
+    <div id="part4" class="section part-section">
+        <h2>Part 4: Project Management and Archiving</h2>
 
         <div class="concept-box">
-            <strong>Project Management:</strong> Proper archiving of your classical recording projects ensures that you can return to them in the future if needed. This includes organising files, creating backups, and documenting your work. ReaClassical's project structure makes this process straightforward.
+            <strong>Project Archiving:</strong> This section covers suggested good practices for archiving your classical recording projects to ensure you can return to them in the future if revisions are needed. While not mandatory, following these practices will help with organising files, creating backups, and documenting your work. ReaClassical's project structure and integrated notes system make this process straightforward.
         </div>
 
         <ol>
             <li><strong>Document your project:</strong>
                 <ul>
                     <li>Open the project notes by pressing <span class="kbd">P</span> (Project Settings)</li>
+                    <li>Navigate to the "Notes" tab</li>
                     <li>Add detailed information about the recording:</li>
                     <ul>
                         <li>Recording date and location</li>
-                        <li>Performers and instruments</li>
+                        <li>Performers, conductor, and instruments</li>
                         <li>Microphone placement and equipment used</li>
-                        <li>Any special techniques or challenges in the production</li>
+                        <li>Any special techniques or challenges encountered</li>
+                        <li>Processing and effects applied</li>
+                        <li>Target loudness and delivery formats</li>
                     </ul>
-                    <li>Use SWS Notes by pressing <span class="kbd">N</span> to add notes to specific items, tracks, or markers</li>
-                    <li>This documentation will be invaluable if you need to revisit the project in the future</li>
+                    <li>Use ReaClassical Notes (<span class="kbd">N</span>) to add notes to specific items, tracks, or markers</li>
+                    <ul><li>This is helpful for documenting editing decisions or problem areas</li></ul>
+                    <li>This documentation will be invaluable if you need to revisit the project months or years later</li>
                 </ul>
+                
+                <figure>
+                    <img src="https://reaclassical.org/manual/src/assets/notes.png" 
+                         alt="Screenshot of ReaClassical Notes window"
+                         title="ReaClassical Notes Window">
+                    <figcaption>
+                        Figure 5: ReaClassical Notes Window - document items, tracks, and markers
+                    </figcaption>
+                </figure>
             </li>
             <li><strong>Clean up the project folder:</strong>
                 <ul>
-                    <li>Go to <span class="kbd">File > Clean current project directory</span></li>
-                    <li>Review the list of unused media files</li>
+                    <li>To reduce project size, you can remove unused media files</li>
+                    <li>Go to <strong>File › Clean current project directory</strong></li>
+                    <li>Review the list of unused media files carefully</li>
                     <li>If you're certain you don't need these files, allow REAPER to move them to the Trash/Recycle Bin</li>
-                    <li>Note: When in doubt, keep everything! Storage is relatively inexpensive compared to the value of your recordings</li>
+                    <li><strong>Important:</strong> When in doubt, keep everything! Storage is relatively inexpensive compared to the value of your recordings</li>
+                    <li>Consider keeping all source takes even if unused - you may want them for alternate versions later</li>
                 </ul>
             </li>
-            <li><strong>Create a project backup:</strong>
+            <li><strong>Create a complete project backup:</strong>
                 <ul>
-                    <li>Go to <span class="kbd">File > Save project as...</span></li>
-                    <li>Choose a name that includes the date (e.g., "Mozart_String_Quartet_Final_2024-02-25")</li>
-                    <li>Ensure "Create subdirectory for project" is checked</li>
-                    <li>Select "Copy all media into project directory"</li>
-                    <li>This creates a fully self-contained project folder that includes all necessary media</li>
+                    <li>To create a fully self-contained archive of your project:</li>
+                    <li>Go to <strong>File › Save project as...</strong></li>
+                    <li>Choose a descriptive name that includes the date (e.g., "Brahms_Quartet_Op51_Final_2026-02-25")</li>
+                    <li>Check "Create subdirectory for project"</li>
+                    <li>Check "Copy all media into project directory"</li>
+                    <li>This creates a complete, portable project folder with all necessary media files</li>
+                    <li>The resulting folder can be archived on external storage without dependencies on other locations</li>
                 </ul>
-                
-                <div class="pro-tip">
-                    <strong>Tip:</strong> Creating a complete project backup with all media is essential for long-term archiving. Even if file formats or software change in the future, having all the original media files ensures you can always recreate your work.
-                </div>
             </li>
             <li><strong>Organise your renders:</strong>
                 <ul>
-                    <li>Create a well-organised folder structure for your renders:</li>
+                    <li>Create a well-organised folder structure for your rendered files:</li>
                     <ul>
-                        <li>"Master" folder for the highest quality full mixes</li>
-                        <li>"CD" folder for DDP filesets and CD-ready 16-bit WAV files</li>
-                        <li>"Distribution" folder for various formats needed for online platforms</li>
+                        <li>"Master" folder for the highest quality full mixes (24-bit WAV)</li>
+                        <li>"CD" folder for DDP filesets and 16-bit WAV files</li>
+                        <li>"Distribution" folder for various formats needed for streaming platforms</li>
+                        <li>"Individual_Tracks" folder for separated tracks</li>
                     </ul>
-                    <li>Include the album reports with your deliverables for reference</li>
-                    <li>Consider including a PDF of the score if available, especially for commissioned or premiere recordings</li>
+                    <li>Include the album reports (HTML and plaintext) with your deliverables</li>
+                    <li>Consider including a PDF of the score if available, especially for premiere recordings</li>
+                    <li>Add any relevant performance notes or programme notes</li>
                 </ul>
             </li>
             <li><strong>Archive to external storage:</strong>
                 <ul>
-                    <li>Copy your complete project folder and renders to at least two separate external storage devices</li>
-                    <li>Consider using different types of storage (e.g., SSD and cloud storage) for redundancy</li>
-                    <li>Store one copy offsite if possible to protect against physical damage or theft</li>
+                    <li>Copy your complete project folder and all renders to at least two separate external storage devices</li>
+                    <li>Use different types of storage for redundancy:</li>
+                    <ul>
+                        <li>One copy on an external SSD or hard drive</li>
+                        <li>One copy on cloud storage (Dropbox, Google Drive, etc.)</li>
+                    </ul>
+                    <li>Store one copy offsite if possible to protect against physical damage, theft, or disasters</li>
                     <li>For extremely important projects, consider creating a checksum file to verify data integrity over time</li>
+                    <li>Document your backup locations and dates in your project notes</li>
+                    <li>Test your backups periodically by opening archived projects to ensure they're still accessible</li>
                 </ul>
             </li>
         </ol>
     </div>
 
-    <!-- Closing Remarks -->
-    <div id="closing" class="section part-section">
-        <h2>Closing Remarks</h2>
+    <!-- Summary -->
+    <div id="summary" class="section part-section">
+        <h2>Summary</h2>
 
-        <p>You've now completed an introduction to ReaClassical's integrated mixing, mastering and rendering workflows. The project you've created demonstrates the core principles of finalising classical music recordings, including:</p>
+        <p>This exercise has introduced ReaClassical's integrated mixing, mastering, and rendering workflows. You have learned to:</p>
 
         <ul>
-            <li>Using automation for static mix scenes and subtle dynamic adjustments</li>
-            <li>Applying transparent EQ and compression appropriate for classical music</li>
-            <li>Creating properly spaced and marked CD tracks</li>
-            <li>Generating room tone automation for natural transitions</li>
-            <li>Rendering in various formats with appropriate metadata</li>
-            <li>Documenting and archiving your project for future reference</li>
+            <li>Use the Mixer Snapshot Manager to create auto-recalled mixer scenes for different sections</li>
+            <li>Apply volume automation to destination and source tracks for detailed control</li>
+            <li>Convert mixer snapshots to permanent automation for faster-than-realtime rendering</li>
+            <li>Create properly spaced CD tracks with appropriate naming</li>
+            <li>Use the Metadata Editor to generate CD markers, regions, and room tone automation automatically</li>
+            <li>Render in various formats using ReaClassical presets, including professional DDP filesets</li>
+            <li>Document and archive projects for long-term preservation</li>
         </ul>
 
-        <p>These skills form the foundation of professional classical music production and will be useful to you in future projects.</p>
-
         <div class="tips">
-            <h3>Tips for finalising projects in ReaClassical</h3>
+            <h3>Key Points</h3>
             <ul>
-                <li>For classical music, aim for integrated loudness around -23 to -18 LUFS - much quieter than popular music standards</li>
-                <li>Use minimal dynamics processing - typically no more than 1-2dB of gain reduction on the loudest passages</li>
-                <li>Allow for natural dynamic range - don't compress the life out of quiet passages</li>
-                <li>Create natural-sounding spaces between movements - typically 2-5 seconds unless indicated otherwise in the score</li>
-                <li>Use room tone to avoid complete digital silence between tracks</li>
-                <li>Always apply dither when reducing bit depth (e.g., from 24-bit to 16-bit)</li>
-                <li>Generate album reports to provide detailed timing information to clients, labels or manufacturers</li>
-                <li>Save multiple versions of your project at key stages of finalisation</li>
-                <li>For revisions, it's often easier to rerun the Create CD Markers function than to manually adjust markers</li>
-                <li>Listen to your final render on different playback systems before delivery</li>
-                <li>Remember that less is more - the best classical mastering is often the most transparent</li>
+                <li>Mixer snapshots (<span class="kbd">Shift+M</span>) are ideal for section-by-section mixing</li>
+                <li>Press <span class="kbd">Y</span> to create CD markers, regions, and metadata in one step</li>
+                <li>Analyse comparable professional recordings to determine appropriate loudness targets for your repertoire</li>
+                <li>Use dry-run rendering to verify loudness before creating final files</li>
             </ul>
         </div>
     </div>
