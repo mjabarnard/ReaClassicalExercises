@@ -263,6 +263,29 @@
             border: 1px solid #d4edda;
         }
         
+        /* Figure styles */
+        figure {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 100%;
+            page-break-inside: avoid;
+        }
+        
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            page-break-before: avoid;
+        }
+        
         /* Table of Contents */
         .toc {
             background-color: #f8f9fa;
@@ -289,17 +312,9 @@
         .toc ul li {
             margin: 8px 0;
             position: relative;
-            padding-left: 25px;
+            padding-left: 0;
         }
         
-        .toc ul li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #2980b9;
-            font-weight: bold;
-            aria-hidden: true;
-        }
         
         .toc ul li a {
             text-decoration: none;
@@ -379,7 +394,7 @@
                 widows: 3;
             }
             
-            .concept-box, .tips, .mac-note, .pro-tip, .challenge {
+            .concept-box, .tips, .mac-note, .pro-tip, .challenge, figure {
                 page-break-inside: avoid;
             }
             
@@ -422,7 +437,7 @@
             </div>
             <div style="flex-grow: 1; min-width: 250px; text-align: right;">
                 <h1>ReaClassical Exercise 1: <br>Project Setup & Recording</h1>
-                <div class="tagline">v1.0 by Matt Barnard Feb 25 for ReaClassical 25</div>
+                <div class="tagline">v2.1 by Matt Barnard Feb 26 for ReaClassical 26</div>
             </div>
         </div>
         <a href="index.html" class="back-btn header-back-btn" aria-label="Back to ReaClassical Exercise Series">
@@ -433,10 +448,10 @@
     <!-- Introduction -->
     <div class="section">
         <h2>Introduction</h2>
-        <p>This exercise introduces you to setting up a ReaClassical project with vertical workflow, configuring input routing, track naming, and the take recording system. It's is designed to be completed in the Lyons Studio using the installed Decca tree in SJLCH for audio input (we don't need to adjust the tree for this exercise), but feel free to use different mic inputs if available.</p>
+        <p>This exercise introduces you to setting up a ReaClassical project with vertical workflow, configuring input routing, track naming, and the take recording system. It's designed to be completed in the Lyons Studio using the installed Decca tree in SJLCH for audio input (we don't need to adjust the tree for this exercise), but feel free to use different mic inputs if available.</p>
 
         <div class="mac-note">
-            <strong>Mac Function Key Note:</strong> On the studio Mac, you'll need to press <span class="kbd" aria-label="function key">fn</span> + the function key (e.g., <span class="kbd">fn+F8</span>) unless the keyboard settings have been changed to use function keys without the fn modifier.
+            <strong>Keyboard Shortcuts:</strong> This guide shows Mac shortcuts first with Windows equivalents in brackets. On the studio Mac, you'll need to press <span class="kbd" aria-label="function key">fn</span> + the function key (e.g., <span class="kbd">fn+F5</span>) unless the keyboard settings have been changed to use function keys without the fn modifier.
         </div>
 
         <div class="concept-box">
@@ -451,7 +466,7 @@
             <li><a href="#part1">Part 1: Project Setup with Vertical Workflow</a></li>
             <li><a href="#part2">Part 2: Recording and Take Management</a></li>
             <li><a href="#part3">Part 3: Exploring ReaClassical's Additional Features</a></li>
-            <li><a href="#closing">Closing Remarks</a></li>
+            <li><a href="#summary">Summary</a></li>
         </ul>
     </div>
 
@@ -460,27 +475,41 @@
         <h2>Part 1: Project Setup with Vertical Workflow</h2>
 
         <div class="concept-box">
-            <strong>Project Structure:</strong> When setting up a project in ReaClassical, you're creating a structure designed for classical music recording and editing. The destination folder (top folder) will eventually contain your final edited version. The source folders below it will contain your individual takes, providing the raw material for your edits. All tracks are linked to a set of mixer tracks that control their settings globally. <strong>Always make changes to the mixer tracks or destination folder first, then sync with fn+F8 to propagate these changes to all source folders.</strong>
+            <strong>Project Structure:</strong> When setting up a project in ReaClassical, you're creating a structure designed for classical music recording and editing. The destination folder (top folder) will eventually contain your final edited version. The source folders below it will contain your individual takes, providing the raw material for your edits. All tracks are linked to a set of mixer tracks that control their settings globally. <strong>Mission Control (accessible via <span class="kbd">C</span>) is your central hub for all track and project management tasks.</strong>
+        </div>
+
+        <div class="concept-box">
+            <strong>Submix Tracks (Optional):</strong> Submixes are useful when collecting microphone arrays composed of multiple mono inputs. For example, the Decca Tree uses three mono microphones (Left, Centre, Right) that need to be combined into a stereo output. Creating a submix gives you a single fader to control the entire array. For simple stereo pairs or mono sources, submixes are unnecessary.
         </div>
 
         <ol>
             <li><strong>Start ReaClassical and create a vertical workflow:</strong>
                 <ol>
-                    <li>Start ReaClassical and immediately save your project (<span class="kbd">Command+S</span>) with a descriptive name like "DeccaTree_Session1"</li>
-                    <li>Press <span class="kbd">fn+F8</span> to set up a vertical workflow
+                    <li>Start ReaClassical and immediately save your project (<span class="kbd">Command+S</span> [<span class="kbd">Ctrl+S</span>]) with a descriptive name like "DeccaTree_Session1"</li>
+                    <li>Press <span class="kbd">Command+N</span> [<span class="kbd">Ctrl+N</span>] to create a new ReaClassical project
                         <ul>
                             <li>When prompted, enter "3" for the number of tracks - this will create three microphone channels in each folder</li>
+                            <li>Select "Vertical" workflow when asked</li>
                         </ul>
                     </li>
+                    <li>Mission Control will open automatically - this is your central control panel for all track management</li>
                     <li>Name the tracks "Left", "Centre", and "Right" for the Decca Tree (this naming convention helps with organisation)</li>
-                    <li>Select "Yes" to auto-set recording inputs based on track names
+                    <li>Since the Decca Tree uses three mono inputs that need combining, click "Add Special Tracks", find "Submix", enter "1" for the number, and name it "Decca Mix" when prompted
                         <ul>
-                            <li>Check it assigns inputs 1-3 for the three tracks when prompted (these correspond to the physical Decca Tree microphones)</li>
+                            <li><em>Note: This step is optional and only needed for multi-mono arrays like the Decca Tree</em></li>
                         </ul>
                     </li>
-                    <li>When asked about special tracks, select "Yes", find "Submix", enter "1" for the number. We'll name it and set it up later - we only need to do this for the Decca to collect the 3 inputs into a stereo buss</li>
-                    <li>Select "OK" to finalise the set-up</li>
+                    <li>Close Mission Control to view your project</li>
                 </ol>
+                
+                <figure>
+                    <img src="https://reaclassical.org/manual/src/assets/new_rc_project.png" 
+                         alt="Screenshot of New ReaClassical Project dialog showing track count and workflow selection options"
+                         title="New ReaClassical Project setup dialog">
+                    <figcaption>
+                        Figure 1: New ReaClassical Project dialog - set track count and choose workflow
+                    </figcaption>
+                </figure>
             </li>
             <li><strong>Examine your project structure:</strong>
                 <ol>
@@ -493,113 +522,138 @@
                     </li>
                     <li>Look at the mixer panel (lower part of the screen by default) to see the mixer tracks (prefixed with "M:") which control all folder tracks
                         <ul> 
-                            <li>The # track appears in the mixer - this is your submix that will combine all Decca Tree elements</li>
+                            <li>The #Decca Mix track appears in the mixer - this submix will combine all three Decca Tree microphones</li>
                         </ul>
                     </li>
-                    <li>Try expanding/collapsing different track folders to see the vertical arrangement track relationships</li>
+                    <li>Try expanding/collapsing different track folders to see the vertical arrangement and track relationships</li>
                 </ol>
             </li>
-            <li><strong>Verify and understand input routing:</strong>
+            <li><strong>Understanding Mission Control:</strong>
                 <ol>
-                    <li>Right-click on the meters of each track in the destination folder to open the input selection menu
+                    <li>Press <span class="kbd">C</span> to open Mission Control
                         <ul>
-                            <li>Inspect the input designation - you should see each track properly assigned to inputs 1-3</li>
-                            <li>Notice how all three tracks are correctly routed to inputs 1-3 without manual configuration</li>
-                            <li>This happens automatically due to track naming and the auto-routing feature</li>
+                            <li>This is your central hub for all track and project management in ReaClassical</li>
                         </ul>
                     </li>
-                    <li>If you need to adjust any inputs, you can use the routing matrix as detailed in the next section</li>
-                    <li><strong>Important:</strong> Always sync <span class="kbd">fn+F8</span> after changing routing to ensure consistent settings across all folders</li>
+                    <li>Notice the different sections and options available:
+                        <ul>
+                            <li>Track list with names, record inputs, and routing controls</li>
+                            <li>Buttons to add/remove/reorder tracks</li>
+                            <li>Special tracks management</li>
+                            <li>Visibility controls for folders and special tracks</li>
+                            <li>Quick access buttons to other RC windows</li>
+                        </ul>
+                    </li>
+                    <li>Take a moment to explore the interface - all project management happens here</li>
+                    <li>Close Mission Control by pressing <span class="kbd">C</span> again or clicking the X</li>
                 </ol>
+                
+                <figure>
+                    <img src="https://reaclassical.org/manual/src/assets/mission_control.png" 
+                         alt="Screenshot of Mission Control window showing track management interface"
+                         title="Mission Control - central hub for ReaClassical project management">
+                    <figcaption>
+                        Figure 2: Mission Control - your central hub for track and project management
+                    </figcaption>
+                </figure>
             </li>
-            <li><strong>Exploring the routing matrix for input control:</strong>
+            <li><strong>Configure microphone inputs in Mission Control:</strong>
                 <ol>
-                    <li>Press <span class="kbd">Option+R</span> to open the routing matrix
+                    <li>Press <span class="kbd">C</span> to open Mission Control</li>
+                    <li>In the track list, you'll see input assignment controls for each track</li>
+                    <li>Click "Auto Rec Inputs" to automatically assign recording inputs based on track names
+                        <ul>
+                            <li>Check that it assigns inputs 1-3 for the three tracks (these correspond to the physical Decca Tree microphones)</li>
+                            <li>If auto-assignment doesn't work as expected, you can manually select inputs using the dropdowns next to each track name</li>
+                        </ul>
+                    </li>
+                    <li>Close Mission Control</li>
+                </ol>
+                
+                <div class="pro-tip">
+                    <strong>Tip:</strong> Mission Control's input assignment is the quickest way to configure recording sources. The "Auto Rec Inputs" feature intelligently matches track names to available inputs, saving time during session setup.
+                </div>
+            </li>
+            <li><strong>Alternative: Exploring the routing matrix for input visualisation:</strong>
+                <ol>
+                    <li>Press <span class="kbd">Option+R</span> [<span class="kbd">Alt+R</span>] to open the routing matrix
                         <ul>
                             <li>Notice how you can see all tracks and their connections in a single view</li>
                         </ul>
                     </li>
-                    <li>The routing matrix provides an alternative method for selecting and managing microphone inputs
+                    <li>The routing matrix provides an alternative method for viewing and selecting microphone inputs
                         <ul> 
-                            <li>This is particularly useful when you need to assign inputs for multiple tracks and access input channels across a broad width (such as from the Dante preamps or other input sources)</li>
+                            <li>This is particularly useful when you need to visualise input assignments across many tracks or when working with Dante preamps and other broad input sources</li>
                         </ul>
                     </li>
-                    <li>Notice the 'Source' and 'Destination' rows and columns, you can see and modify microphone input assignments by clicking on different channels
+                    <li>Notice the 'Source' and 'Destination' rows and columns - you can see and modify microphone input assignments by clicking on different channels
                         <ul>
                             <li>You can create mono inputs or stereo pairs</li>
                         </ul>
                     </li>
-                    <li>Make any needed input changes in the destination group or mixer tracks</li>
-                    <li>After making changes, press <span class="kbd">fn+F8</span> to propagate these changes to all source folders</li>
-                    <li><strong>Important:</strong> Always sync <span class="kbd">fn+F8</span> after changing routing to ensure consistent settings across all folders</li>
-                    <li>Close the routing matrix window when finished by clicking the X or pressing Escape</li>
+                    <li>While Mission Control is typically more efficient for input assignment, the routing matrix excels at providing a comprehensive overview of your signal flow</li>
+                    <li>Close the routing matrix window when finished by clicking the X or pressing <span class="kbd">Escape</span></li>
                 </ol>
             </li>
-            <li><strong>Add a new track and understand track management:</strong>
+            <li><strong>Add new tracks using Mission Control:</strong>
                 <ol>
-                    <li>Press <span class="kbd">Option+T</span> to add a track to all folders simultaneously</li>
+                    <li>Press <span class="kbd">C</span> to open Mission Control</li>
+                    <li>Click "Add Track to All Folders"</li>
                     <li>When prompted, enter the track name "Audience" - this could represent an audience microphone in a live recording
                         <ul>
                             <li>Notice how the track appears in every folder and in the mixer</li>
                         </ul>
                     </li>
-                    <li>Practice selecting a stereo input for this track using either the right-click approach or the Routing Matrix (using the Stereo/MC part of the input list)</li>
-                    <li>Now try adding another track called "Soloist" using the same method. Select a mono input for this</li>
-                    <li><strong>Important:</strong> Always sync <span class="kbd">fn+F8</span> after changing routing to ensure consistent settings across all folders</li>
+                    <li>In Mission Control, select a stereo input for this track using the input dropdown (choose from the Stereo/MC section of the input list)</li>
+                    <li>Now try adding another track called "Soloist" using the same method, and select a mono input for it</li>
                     <li>Observe how both new tracks maintain the same position in every folder - maintaining consistency across your project</li>
+                    <li>Close Mission Control</li>
                 </ol>
                 
                 <div class="pro-tip">
-                    <strong>Tip:</strong> Using the global approach to add tracks ensures consistency across your entire project, saving time and reducing the likelihood of errors that could occur when configuring tracks individually.
+                    <strong>Tip:</strong> Mission Control ensures that all track additions, deletions, and modifications are applied consistently across your entire project, saving time and reducing the likelihood of errors that could occur when configuring tracks individually.
                 </div>
             </li>
-            <li><strong>Rename tracks and understand mixer synchronisation:</strong>
+            <li><strong>Rename tracks using Mission Control:</strong>
                 <ol>
-                    <li>In the mixer panel, rename "M:Left" to "M:Decca Left" by double-clicking on the name</li>
-                    <li>Similarly rename "M:Centre" to "M:Decca Centre" and "M:Right" to "M:Decca Right"</li>
-                    <li>Also rename "M:Audience" to "M:Hall Ambient" and "M:Soloist" to "M:Solo Spot"
+                    <li>Press <span class="kbd">C</span> to open Mission Control</li>
+                    <li>In the track list, rename "Left" to "Decca Left" by clicking on the name and editing it</li>
+                    <li>Similarly rename "Centre" to "Decca Centre" and "Right" to "Decca Right"</li>
+                    <li>Also rename "Audience" to "Hall Ambient" and "Soloist" to "Solo Spot"</li>
+                    <li>Close Mission Control
                         <ul>
-                            <li>Notice how the names in the mixer panel haven't yet changed in the main project view</li>
+                            <li>Notice how the names in both the mixer panel and all folders update to reflect your new naming scheme</li>
+                            <li>Mission Control automatically propagates all changes across the project</li>
                         </ul>
                     </li>
-                    <li>Press <span class="kbd">fn+F8</span> to sync these new names across all folders</li>
-                    <li>Observe how all tracks in all folders update to reflect your new naming scheme</li>
-                    <li><strong>Important:</strong> Always make changes to mixer tracks (M: prefixed) or destination folder tracks first, then sync with fn+F8 to propagate these changes</li>
                 </ol>
             </li>
-            <li><strong>Setting up the Decca Tree Submix with routing:</strong>
+            <li><strong>Setting up the Decca Tree submix with routing:</strong>
                 <ol>
-                    <li>Look at the "#" submix track that was created during setup - this will become your main Decca Tree mix</li>
-                    <li>First, rename it to '#Decca Mix' by double-clicking the name. We need to modify our track names to properly route to the submix:</li>
-                    <li>In the mixer panel, rename "M:Decca Left" to "M:Decca Left-", "M:Decca Centre" to "M:Decca Centre-", and "M:Decca Right" to "M:Decca Right-"
+                    <li>Press <span class="kbd">C</span> to open Mission Control</li>
+                    <li>In the track list, locate the three Decca microphone tracks (M:Decca Left, M:Decca Centre, M:Decca Right)</li>
+                    <li>For each Decca track, click the routing button (appears as a small routing icon next to the track)
                         <ul>
-                            <li>The hyphen at the end of each name is crucial - it tells ReaClassical that these tracks shouldn't route directly to the master bus</li>
+                            <li>In the routing menu, select "#Decca Mix" as the destination</li>
+                            <li>Repeat for all three Decca tracks</li>
+                            <li>This creates a signal flow where all three microphones feed into the single Decca Mix submix</li>
                         </ul>
                     </li>
-                    <li>Press <span class="kbd">fn+F8</span> to sync these name changes to all folders</li>
-                    <li>Now in the mixer panel, click and drag from the routing button (at the bottom of the track panel) of "M:Decca Left-" to "#Decca Mix"
-                        <ul> 
-                            <li>A routing window appears - simply click OK to accept the default routing</li>
-                            <li>Similarly route "M:Decca Centre-" and "M:Decca Right-" to "#Decca Mix"</li>
-                        </ul>
-                    </li>
-                    <li>This creates a network where all three Decca Tree microphones feed into a single submix</li>
-                    <li>Now let's configure the spatial positioning of these microphones in the stereo field:
+                    <li>Close Mission Control</li>
+                    <li>Now configure the spatial positioning of these microphones in the mixer panel:
                         <ul>
-                            <li>In the mixer panel, select "M:Decca Left-" and adjust its pan control fully left</li>
-                            <li>Select "M:Decca Right-" and adjust its pan control fully right</li>
-                            <li>Leave "M:Decca Centre-" centred in the stereo image</li>
+                            <li>Select "M:Decca Left" and adjust its pan control fully left</li>
+                            <li>Select "M:Decca Right" and adjust its pan control fully right</li>
+                            <li>Leave "M:Decca Centre" centred in the stereo image</li>
                             <li>This creates a proper stereo image that matches the physical layout of the Decca Tree</li>
                         </ul>
                     </li>
                     <li>Try adjusting the volume faders for each microphone to change their relative levels in the mix</li>
-                    <li>Press <span class="kbd">fn+F8</span> to sync these routing, pan, and volume settings to all folders</li>
-                    <li>Now the "#Decca Mix" track contains a properly configured mix of your three Decca Tree microphones</li>
-                    <li>When using additional input channels in future, try soloing the #Decca Mix track to hear how it sounds with your current settings</li>
+                    <li>The "#Decca Mix" track now contains a properly configured mix of your three Decca Tree microphones</li>
                 </ol>
                 
                 <div class="pro-tip">
-                    <strong>Tip:</strong> Submixes give you a single fader to control grouped microphones, which is convenient for both recording and editing. In larger orchestral sessions, you might create submixes for strings, woodwinds, brass, etc., allowing for balanced section control while maintaining access to individual microphones when needed. We are creating a submix in the exercise due to the Decca tree having 3 signals - we are making a 2ch buss from those 3 feeds. You don't need to make submixes for 2ch arrays or mono feeds.
+                    <strong>Tip:</strong> Submixes give you a single fader to control grouped microphones, which is convenient for both recording and editing. In larger orchestral sessions, you might create submixes for strings, woodwinds, brass, etc., allowing for balanced section control while maintaining access to individual microphones when needed. Remember: submixes are only needed when combining multiple mono inputs - you don't need submixes for stereo pairs or single mono sources.
                 </div>
             </li>
         </ol>
@@ -614,16 +668,16 @@
         </div>
 
         <ol>
-            <li><strong>Set up for recording with the Take Counter:</strong>
+            <li><strong>Set up for recording with the Record Panel:</strong>
                 <ol>
                     <li>Position the edit cursor at the beginning of the timeline by pressing <span class="kbd">Home</span></li>
                     <li>Select the Destination folder if it's not already selected</li>
-                    <li>Open the Take Counter window with <span class="kbd">Command+Return</span>
+                    <li>Open the Record Panel window with <span class="kbd">Command+Return</span> [<span class="kbd">Ctrl+Enter</span>]
                         <ul>
-                            <li>Notice the green number showing the next take number - this tracks your recording progress</li>
+                            <li>Notice the interface showing take number, session controls, and ranking options</li>
                         </ul>
                     </li>
-                    <li>Right-click on the Take Counter window to access additional options
+                    <li>Right-click on the Record Panel window to access additional options
                         <ul>
                             <li>Enter a session name like "DeccaSession" - this helps organise files and makes later identification easier</li>
                             <li>Leave the override take number setting at 0 (automatic)</li>
@@ -632,64 +686,81 @@
                     </li>
                     <li>Click OK to confirm your settings</li>
                 </ol>
+                
+                <figure>
+                    <img src="https://reaclassical.org/manual/src/assets/record_panel.png" 
+                         alt="Screenshot of ReaClassical Record Panel showing take counter and recording controls"
+                         title="ReaClassical Record Panel">
+                    <figcaption>
+                        Figure 3: Record Panel - your control centre for classical take recording
+                    </figcaption>
+                </figure>
+                
+                <div class="pro-tip">
+                    <strong>Record Panel Buttons:</strong> The Record Panel provides mouse-clickable buttons for all recording functions: "Rec" to arm/record/stop, "Pause" to pause recording, "+Take" to increment the take number, and "Next" to move to the next folder. These buttons provide an alternative to keyboard shortcuts. You can also add ranking and notes while recording or after the fact by clicking on a previously-recorded item.
+                </div>
             </li>
             <li><strong>Record multiple takes with automatic folder management:</strong>
                 <ol>
-                    <li>Press <span class="kbd">fn+F9</span> once to arm the tracks for recording - notice how the track meters become active
+                    <li>Click the "Rec" button (or press <span class="kbd">fn+F9</span>) to arm the tracks for recording - notice how the track meters become active
                         <ul>
                             <li>Observe that only the tracks in the first source folder are armed</li>
-                            <li>The Take Counter displays the current take number in green</li>
+                            <li>The Record Panel displays the current take number in green</li>
                         </ul>
                     </li>
-                    <li>Press <span class="kbd">fn+F9</span> again to begin recording - the Take Counter now shows a red recording indicator
+                    <li>Click "Rec" again (or press <span class="kbd">fn+F9</span>) to begin recording - the Record Panel now shows a red recording indicator
                         <ul>
                             <li>Record about 15-20 seconds of audio from the Decca tree in the Hall</li>
                         </ul>
                     </li>
-                    <li>Press <span class="kbd">fn+F9</span> to stop recording</li>
+                    <li>Click "Rec" (or press <span class="kbd">fn+F9</span>) to stop recording</li>
                     <li>Notice a few things happening automatically:
                         <ul>
                             <li>The next source folder is automatically selected and armed - ready for the next take</li>
-                            <li>The Take Counter increments to the next take number</li>
+                            <li>The Record Panel increments to the next take number</li>
                             <li>All your recorded audio is properly organised in the first source folder</li>
                         </ul>
                     </li>
-                    <li>Record a second take using <span class="kbd">fn+F9</span> and observe the same automatic processes</li>
-                    <li>For your third take, try pressing <span class="kbd">Command+Space</span> during recording to pause</li>
-                    <li>Notice that pausing keeps the same take but creates a gap in the recording</li>
-                    <li>Press <span class="kbd">Command+Space</span> again to resume recording</li>
-                    <li>Finally press <span class="kbd">fn+F9</span> to stop recording</li>
+                    <li>Record a second take using "Rec" (or <span class="kbd">fn+F9</span>) and observe the same automatic processes</li>
+                    <li>For your third take, try clicking "Pause" (or pressing <span class="kbd">Command+Space</span> [<span class="kbd">Ctrl+Space</span>]) during recording to pause
+                        <ul>
+                            <li>Notice that pausing keeps the same take but creates a gap in the recording</li>
+                        </ul>
+                    </li>
+                    <li>Click "Pause" again (or press <span class="kbd">Command+Space</span> [<span class="kbd">Ctrl+Space</span>]) to resume recording</li>
+                    <li>Finally click "Rec" (or press <span class="kbd">fn+F9</span>) to stop recording</li>
                 </ol>
             </li>
             <li><strong>Additional recording techniques:</strong>
                 <ol>
-                    <li>Press <span class="kbd">fn+F9</span> to begin recording take 4</li>
-                    <li>After a few seconds of recording from the Decca tree, press <span class="kbd">Option+fn+F9</span>
+                    <li>Click "Rec" (or press <span class="kbd">fn+F9</span>) to begin recording take 4</li>
+                    <li>After a few seconds of recording from the Decca tree, click "+Take" (or press <span class="kbd">Option+fn+F9</span> [<span class="kbd">Alt+F9</span>])
                         <ul> 
                             <li>This increments the take number without stopping recording - useful for continuous recording sessions</li>
-                            <li>Notice how the Take Counter advances but recording continues</li>
+                            <li>Notice how the take counter advances but recording continues</li>
                         </ul>
                     </li>
-                    <li>Record a few more seconds and press <span class="kbd">fn+F9</span> to stop
+                    <li>Record a few more seconds and click "Rec" (or press <span class="kbd">fn+F9</span>) to stop
                         <ul>
                             <li>Notice how ReaClassical has now created multiple takes across different source folders</li>
                             <li>If you look at the source folders, you'll see each contains the appropriate audio for each take</li>
                         </ul>
                     </li>
+                    <li>Close the Record Panel when you've finished recording</li>
                 </ol>
                 
                 <div class="pro-tip">
-                    <strong>Tip:</strong> The take increment feature (<span class="kbd">Option+fn+F9</span>) is particularly useful during sessions with repeated attempts at difficult passages. It allows the recording to continue while still organising takes properly for later editing.
+                    <strong>Tip:</strong> The "+Take" button (or <span class="kbd">Option+fn+F9</span> [<span class="kbd">Alt+F9</span>]) is particularly useful during sessions with repeated attempts at difficult passages. It allows the recording to continue while still organising takes properly for later editing.
                 </div>
             </li>
             <li><strong>Auditioning recorded material:</strong>
                 <ol>
                     <li>Navigate to take 1 by pressing <span class="kbd">Return</span> and entering "1"</li>
-                    <li>Hover your mouse over the  "Decca Centre-" track in take 1 and press <span class="kbd">A</span> to hear just that microphone</li>
-                    <li>Now hover over the "Decca Right-" track and press <span class="kbd">A</span> to hear just that microphone</li>
-                    <li>Now hover over the parent folder track  "Decca Left-" and press <span class="kbd">A</span> to hear the complete mix of that take</li>
+                    <li>Hover your mouse over the "Decca Centre" track in take 1 and press <span class="kbd">A</span> to hear just that microphone</li>
+                    <li>Now hover over the "Decca Right" track and press <span class="kbd">A</span> to hear just that microphone</li>
+                    <li>Now hover over the parent folder track and press <span class="kbd">A</span> to hear the complete mix of that take</li>
                     <li>Try hovering at different positions within the waveform and pressing <span class="kbd">A</span> - playback starts from that position</li>
-                    <li>Press <span class="kbd">Option+A</span> to audition at a slower playback rate</li>
+                    <li>Press <span class="kbd">Shift+A</span> to audition at a slower playback rate (as set in preferences)</li>
                     <li>Use <span class="kbd">Space</span> to stop playback at any time</li>
                     <li>Navigate to take 2 using <span class="kbd">Return</span> and "2", then repeat the auditioning process
                         <ul>
@@ -705,23 +776,39 @@
             </li>
             <li><strong>Ranking takes for editing efficiency:</strong>
                 <ol>
-                    <li>After auditioning all your takes, navigate back to take 1</li>
-                    <li>Press <span class="kbd">Command+=</span> to rank it higher - notice the colour change and "+" symbol added to the item
+                    <li>After auditioning all your takes, navigate back to take 1 by pressing <span class="kbd">Return</span> and entering "1"</li>
+                    <li>In the Record Panel, click on the take 1 item in the list to select it
                         <ul>
-                            <li>Navigate to take 2 and press <span class="kbd">Command+=</span> twice to rank it even higher (++) - see how the color intensifies</li>
-                            <li>Navigate to take 3 and press <span class="kbd">Command+-</span> to rank it lower - note the different colour indicating a lower-ranked take</li>
-                            <li>Navigate back to take 1 and press <span class="kbd">Command+0</span> to remove any ranking - returning it to the default colour</li>
+                            <li>Notice the ranking dropdown menu becomes available</li>
                         </ul>
                     </li>
-                    <li>Explore the full range of rankings by applying multiple + or - rankings to different takes
+                    <li>Click the ranking dropdown and select a rating such as "Very Good"
                         <ul>
-                            <li>Notice how the visual system creates an overview of take quality across your project</li>
+                            <li>Notice the colour change on the item in both the Record Panel and on the timeline</li>
+                            <li>Available rankings are: Excellent, Very Good, Good, Okay, Below Average, Poor, Unusable, False Start, and No Rank</li>
                         </ul>
                     </li>
+                    <li>Click on take 2 in the Record Panel list and select "Excellent" from the dropdown
+                        <ul>
+                            <li>Notice how different rankings produce different colours</li>
+                        </ul>
+                    </li>
+                    <li>Click on take 3 and select "Below Average" from the dropdown
+                        <ul>
+                            <li>Note the different colour indicating a lower-ranked take</li>
+                        </ul>
+                    </li>
+                    <li>Click on take 1 again and select "No Rank" to remove the ranking - returning it to the default colour</li>
+                    <li>Explore the different ranking options by applying them to your various takes
+                        <ul>
+                            <li>Notice how the visual colour coding creates an overview of take quality across your project</li>
+                        </ul>
+                    </li>
+                    <li>You can also add text notes to takes by clicking in the notes field in the Record Panel and typing your observations</li>
                 </ol>
                 
                 <div class="pro-tip">
-                    <strong>Tip:</strong> Take ranking is useful during longer recording sessions and later editing stages. The visual colour coding helps identify your best and worst takes quickly. Even if you're not editing today, ranking takes as you record them preserves your initial impressions when the performances are fresh in your mind.
+                    <strong>Tip:</strong> Take ranking is useful during longer recording sessions and later editing stages. The visual colour coding helps identify your best and worst takes quickly. Rank takes as you record them to preserve your initial impressions when the performances are fresh in your mind. Notes can capture specific details like "good dynamics bar 12" or "tuning issue at rehearsal mark C".
                 </div>
             </li>
         </ol>
@@ -739,7 +826,6 @@
             <li><strong>Navigation and visibility controls:</strong>
                 <ol>
                     <li>Press <span class="kbd">`</span> (backtick) to see the entire project horizontally - all your takes are visible at once</li>
-                    <li>Press <span class="kbd">Command+'</span> to see the entire project vertically - all your folders are visible</li>
                     <li>Select any parent folder track and press <span class="kbd">E</span> to hide all child tracks (ensconce)
                         <ul>
                             <li>Observe how the view simplifies to show only the parent tracks - useful for getting an overview</li>
@@ -750,82 +836,106 @@
                             <li>Try hiding children on some folders and showing them on others to create custom views</li>
                         </ul>
                     </li>
-                    <li>Press <span class="kbd">Return</span> and enter different take numbers to quickly jump between takes
+                    <li>Press <span class="kbd">TAB</span> to open the jump to time dialog
                         <ul>
-                            <li>Try entering take numbers with decimals (e.g., "2.5") to position the cursor partway through a take</li>
+                            <li>You can enter an absolute time or a take number to quickly navigate</li>
+                            <li>Try entering different take numbers to quickly jump between takes</li>
+                            <li>You can also enter times with decimals (e.g., "2.5") to position partway through</li>
                         </ul>
                     </li>
                     <li>Use <span class="kbd">Q</span> and <span class="kbd">W</span> to navigate to the previous or next item edge - useful for moving between edits</li>
-                    <li>Experiment with <span class="kbd">Command+Up Arrow</span> and <span class="kbd">Command+Down Arrow</span> to adjust waveform zoom - see how it affects visibility without changing audio volume</li>
+                    <li>Experiment with <span class="kbd">Ctrl+Up Arrow</span> and <span class="kbd">Ctrl+Down Arrow</span> to adjust waveform zoom - see how it affects visibility without changing audio volume</li>
                 </ol>
             </li>
             <li><strong>Working with track groups and understanding folder structures:</strong>
                 <ol>
-                    <li>Press <span class="kbd">\</span> (backslash) to duplicate a folder without items - creating a new empty source group
+                    <li>Press <span class="kbd">Command+D</span> [<span class="kbd">Ctrl+D</span>] to duplicate a folder without items - creating a new empty source group
                         <ul>
                             <li>Notice how the new folder maintains the same track structure as the others</li>
                             <li>This is useful when you need more source groups for additional takes beyond what was automatically created</li>
                         </ul>
                     </li>
-                    <li>Press <span class="kbd">#</span> to open the special tracks dialog
-                        <ul>  
-                            <li><strong>Mac Workaround:</strong> If the # key doesn't work on the Mac (which is a known issue), go to the main menu and select Actions → Show Action List, then search for "special tracks" and run that action by double-clicking it</li>
-                        </ul>
-                    </li>
-                    <li>Add a "RoomTone" track - useful for maintaining natural ambience between edits</li>
-                    <li>Add a "Reference" track - helpful for comparing your work to other recordings
+                    <li>Open Mission Control with <span class="kbd">C</span></li>
+                    <li>Click "Add Special Tracks" to access special track options
                         <ul>
+                            <li>Add a "RoomTone" track - useful for maintaining natural ambience between edits</li>
+                            <li>Add a "Reference" track - helpful for comparing your work to other recordings</li>
                             <li>Notice how these special tracks appear differently in the mixer and serve specific functions</li>
                         </ul>
                     </li>
+                    <li>Close Mission Control</li>
                     <li>Import a short audio file to the reference track and audition it to understand its purpose</li>
                 </ol>
             </li>
             <li><strong>Recording features and scheduling:</strong>
                 <ol>
-                    <li>Right-click on the Take Counter and explore the scheduling options</li>
+                    <li>Open the Record Panel with <span class="kbd">Command+Return</span> [<span class="kbd">Ctrl+Enter</span>]</li>
+                    <li>Right-click on the Record Panel and explore the scheduling options</li>
                     <li>Set a start time 2 minutes ahead of the current time
                         <ul>
-                            <li>Observe how the Take Counter now displays a timer indicating when recording will begin</li>
+                            <li>Observe how the Record Panel now displays information indicating when recording will begin</li>
                             <li>This feature is useful for timed recordings or when you need to set up before a performance begins</li>
                             <li>You can also set an end time or duration for automated recording sessions</li>
                         </ul> 
                     </li>
-                    <li>Cancel the scheduled recording by right-clicking the Take Counter and clearing the time fields</li>
+                    <li>Cancel the scheduled recording by right-clicking the Record Panel and clearing the time fields</li>
+                    <li>Close the Record Panel</li>
                     <li>Access the ReaClassical manual with <span class="kbd">H</span> for detailed information on all features</li>
                 </ol>
+            </li>
+            <li><strong>Exploring the Meterbridge:</strong>
+                <ol>
+                    <li>Press <span class="kbd">B</span> to open the Meterbridge
+                        <ul>
+                            <li>Notice the numeric peak holds displayed for each channel</li>
+                            <li>When tracks are record-armed, the main window displays recording inputs</li>
+                        </ul>
+                    </li>
+                    <li>Right-click in the Meterbridge window to access options
+                        <ul>
+                            <li>Try checking "Graphical Meters" to see a different display</li>
+                            <li>Explore color threshold settings</li>
+                        </ul>
+                    </li>
+                    <li>Close the Meterbridge when finished</li>
+                </ol>
+                
+                <figure>
+                    <img src="https://reaclassical.org/manual/src/assets/meterbridge.png" 
+                         alt="Screenshot of ReaClassical Meterbridge showing channel meters"
+                         title="ReaClassical Meterbridge">
+                    <figcaption>
+                        Figure 4: Meterbridge - visual metering for all channels
+                    </figcaption>
+                </figure>
             </li>
         </ol>
     </div>
 
     <!-- Closing Remarks -->
-    <div id="closing" class="section part-section">
-        <h2>Closing Remarks</h2>
+    <div id="summary" class="section part-section">
+        <h2>Summary</h2>
 
-        <p>Now that you've completed this exercise, you've created a functional ReaClassical project that demonstrates the fundamentals of the vertical workflow, recording management, and take organisation. Consider keeping this project as a reference template for future sessions. When you begin a new recording project, you might find it useful to:</p>
+        <p>This exercise has introduced the fundamentals of ReaClassical project setup and recording workflow. You have learned to:</p>
 
         <ul>
-            <li>Save this project as a template that you can quickly adapt for different recording scenarios</li>
-            <li>Refer back to this exercise when setting up more complex recording configurations</li>
-            <li>Use this project as a testing ground for experimenting with different routing setups or microphone arrangements</li>
+            <li>Create a vertical workflow project with multiple tracks</li>
+            <li>Use Mission Control (<span class="kbd">C</span>) for track management, naming, and input routing</li>
+            <li>Configure optional submixes for multi-mono microphone arrays</li>
+            <li>Record multiple takes using the Classical Take Recording system (<span class="kbd">fn+F9</span>)</li>
+            <li>Navigate between takes and audition recordings (<span class="kbd">A</span> key)</li>
+            <li>Rank takes for editing efficiency</li>
         </ul>
 
-        <p>Remember that becoming proficient with any recording system requires practice. The keyboard shortcuts you've learned here will become second nature with regular use, significantly increasing your efficiency during recording and editing sessions.</p>
-
         <div class="tips">
-            <h3>Additional Tips for ReaClassical</h3>
+            <h3>Key Points</h3>
             <ul>
-                <li>The destination folder is always the first folder - it's where you'll build your final edit</li>
-                <li>Source folders (below the destination) store your individual takes and are automatically added as needed during recording</li>
-                <li>Always make changes to mixer tracks (M: prefixed) or destination folder tracks first, then use <span class="kbd">fn+F8</span> to sync these changes to all source folders - <strong>this workflow ensures consistent settings across your project</strong></li>
-                <li>Use the Take Counter window for every recording session - it helps track take numbers for your take sheet and prevents confusion</li>
-                <li>The <span class="kbd">fn+F9</span> key is your main recording control - it handles arming, recording, and folder selection</li>
-                <li>The auditioning system (<span class="kbd">A</span> key) allows quick comparison between takes and channels</li>
-                <li>Rank your takes during or immediately after recording while your impressions are fresh</li>
-                <li>Use project preferences (<span class="kbd">fn+F5</span>) to customise ReaClassical's behaviour to your workflow</li>
-                <li>Save your project frequently with <span class="kbd">Command+S</span></li>
-                <li>Explore both vertical and horizontal workflows to determine which works best for different projects</li>
-                <li>Take time to learn the keyboard shortcuts - they can increase editing efficiency</li>
+                <li>Mission Control (<span class="kbd">C</span>) is the central hub for all project management</li>
+                <li>Submixes are only needed when combining multiple mono inputs</li>
+                <li><span class="kbd">fn+F9</span> controls the entire record workflow (arm → record → stop)</li>
+                <li>The Record Panel tracks take numbers and session information</li>
+                <li>Press <span class="kbd">A</span> to audition tracks or folders quickly</li>
+                <li>Press <span class="kbd">TAB</span> to jump to specific times or take numbers</li>
             </ul>
         </div>
     </div>
